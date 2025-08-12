@@ -1,0 +1,219 @@
+(Recall that we have covered about Optimization Algorithms and Gradient Descent Optimization algorithm
+back in the ML tutorials, under the '1. What_are_Optimization_Algorithms_and_General_Gradient_Descent_
+Optimization_Algorithm_and_what_is_a_Cost_Function_and_Mean_Squared_Error_Cost_Function.txt' file in 
+the 'Tutorial 3 - Optimization Algorithms, General Gradient Descent Optimzation Algorithm, Cost Functions 
+and the Mean Squared Error (MSE) Cost Function' folder) (This section is copy-pasted from that file)
+
+
+What are Optimization Algorithms?
+Optimization Algorithms are algorithms that are used to optimize/minimise the value of the Cost 
+Function (see the section below 'What is the Cost Function?'). It does so by finding a set of parameters 
+(not the dependent variable nor the independent variables/features, but the weights and biases) for a ML 
+algorithm/model that optimizes/minimises the value of the Cost Function.
+
+
+What are Weights and Biases?
+- Weights are coefficients assigned to the independent variables/features (input) in a mathematical equation
+  of a ML algorithm.
+- Biases are the additional terms in the mathematical equation of a ML algorithm.
+
+For example, using the mathematical equation representing the Single Variable Linear Regression (SVLR) ML
+algorithm, y = mx + b, where 'y' is the dependent variable (output) while 'x' is the independent 
+variable/feature (input),
+-> Weight(s) will be the 'm' variable
+-> Bias(es) will be the 'b' variable
+
+
+What are the different types of Optimization Algorithms:
+
+(Note: In this tutorial I am not going in-depth to explain every single type of Optimization Algorithm as 
+       the focus of this tutorial is about the (general) Gradient Descent algorithm and the Mean Squared Error 
+       (MSE) Optimization Algorithm only)
+
+First-order Optimization Algorithms:
+   1. Gradient Descent Algorithms (Here is a tree-diagram of how the (general) Gradient Descent is related
+      to each of its variations)
+                           (general) Gradient Descent (taught in this tutorial)
+                   ______________________________|__________________________________
+                  |                       |                                         |
+                Batch               Stochastic                                      |
+           Gradient Descent     Gradient Descent (SGD)                              |
+                  |                  _____|_________________                        |
+                  |                 |                       |                       |
+               Mini-Batch         Nesterov                Momentum                Adagrad
+           Gradient Descent Accelerated Gradient (NAG)                              |
+                                    |                                               |
+                                    |                             __________________|________________
+                                    |                            |                  |                |
+                                    |                      Root Mean Square      Adadelta       Adaptive Moment
+                                    |                   Propogration (RMSprop)                  Estimation (Adam)
+                                    |                                                                |
+                                    |                                                                |
+                                    |________________________________________________________________|
+                                                                  |
+                                                         Nesterov-accelerated 
+                                                   Adaptive Moment Estimation (Nadam)
+   2. Evolutionary Optimization Algorithms
+      - Genetic Algorithms (GA)
+      - Differntial Evolution (DE)
+
+   3. Swarm Intelligence Algorithms
+      - Particle Swarm Optimization (PSO)
+      - Ant Colony Optimization (ACO)
+
+   4. Stochastic Optimization Algorithms
+      - Simulated Annealing
+      - Random Search
+
+Second-order Optimization Algorithms:
+   1. Newton's Method
+   
+   2. Quasi-Newton Methods
+      - Broyden-Fletcher-Goldfarb-Shanno (BFGS)
+        -> Limited-memory Broyden-Fletcher-Goldfarb-Shanno (LBFGS)
+
+   3. Constrained Optimization Algorithms
+      -> Constrained Optimization By Linear Approximations (COBYLA)
+
+   4. Bayesian Optimization Algorithms
+
+
+Source: https://medium.com/analytics-vidhya/optimization-algorithms-in-machine-learning-6493c7badb6e (Medium) (for 
+        the tree-diagram of how the (general) Gradient Descent Optimization Algorithm is related to each of its 
+        variations)
+        https://www.geeksforgeeks.org/optimization-algorithms-in-machine-learning/ (GeekforGeeks) (for the list of
+        types of first-order and second-order Optimization Algorithms)
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+(However, this folder will explore further than the '1. What_are_Optimization_Algorithms_and_General_
+Gradient_Descent_Optimization_Algorithm_and_what_is_a_Cost_Function_and_Mean_Squared_Error_Cost_Function.txt' 
+file in the 'Tutorial 3 - Optimization Algorithms, General Gradient Descent Optimzation Algorithm, Cost 
+Functions and the Mean Squared Error (MSE) Cost Function' folder, specifically, it will explore on
+the difference of 3 of the most common variants of the General Gradient Descent Optimzation Algorithm,
+Batch Gradient Descent Optimization algorithm, Stochastic Gradient Descent Optimization algorithm, and
+Mini-Batch Gradient Descent Optimization algorithm)
+
+As mentioned from the above section, 3 of the most common variants of the General Gradient Descent 
+Optimzation Algorithm are:
+- Batch Gradient Descent Optimization algorithm
+- Stochastic Gradient Descent Optimization algorithm
+- Mini-Batch Gradient Descent Optimization algorithm
+
+
+
+What is the Batch Gradient Descent Optimization algorithm?
+Actually, the (general) Gradient Descent Optimization algorithm we discussed in the ML tutorials is
+basically Batch Gradient Descent Optimization algorithm!
+
+Steps of the Batch Gradient Descent Optimization algorithm:
+During each epoch:
+1. Use the entire training dataset to calculate the total Cost Function for the entire training 
+   dataset and hence the partial derivative (gradient)
+2. Adjust weight/bias at the end of the epoch via the formula:
+            w⁽ᴸ⁾ = w⁽ᴸ⁾ - (learning rate, η * ∂C₀/∂w⁽ᴸ⁾)      (for the weights, w⁽ᴸ⁾)
+            b⁽ᴸ⁾ = b⁽ᴸ⁾ - (learning rate, η * ∂C₀/∂b⁽ᴸ⁾)      (for the biases, b⁽ᴸ⁾)
+
+(Note:
+I did not mention about the (general) Gradient Descent Optimization algorithm actually being the 
+Batch Gradient Descent Optimization algorithm during the ML tutorials since it was being applied in
+a SVLR/MVLR ML algorithm— and in that context, it didn’t really matter.
+
+This is because linear regression models are shallow (just one layer) and often converge quickly, 
+sometimes within just one epoch, making the distinction between Batch Gradient Descent Optimization 
+algorithm, Stochastic Gradient Descent Optimization algorithm, or Mini-Batch Gradient Descent 
+Optimization algorithm less critical.
+
+However, in DL, especially with Neural Networks that have multiple layers and 
+require multiple epochs to train effectively, this distinction does matter.
+
+Choosing between Batch, Stochastic, or Mini-Batch Gradient Descent affects training speed, 
+convergence stability, and memory efficiency, and is therefore an important design decision in 
+DL workflows.)
+
+
+
+What is the Stochastic Gradient Descent Optimization algorithm?
+Stochastic Gradient Descent Optimization algorithm is basically like the Batch Gradient Descent 
+Optimization algorithm, but instead of using entire training dataset, we use a single randomly 
+selected training data per epoch, to calculate the Cost Function for just that training data 
+and hence the partial derivative (gradient).
+
+Steps of the Stochastic Gradient Descent Optimization algorithm:
+During each epoch:
+1. Use a randomly selected training data to calculate the Cost Function for just that training 
+   data and hence the partial derivative (gradient)
+2. Adjust weight/bias at the end of the epoch via the formula:
+            w⁽ᴸ⁾ = w⁽ᴸ⁾ - (learning rate, η * ∂C₀/∂w⁽ᴸ⁾)      (for the weights, w⁽ᴸ⁾)
+            b⁽ᴸ⁾ = b⁽ᴸ⁾ - (learning rate, η * ∂C₀/∂b⁽ᴸ⁾)      (for the biases, b⁽ᴸ⁾)
+
+
+
+What is the Mini-Batch Gradient Descent Optimization algorithm?
+Mini-Batch Gradient Descent Optimization algorithm is basically like the Stochastic Gradient Descent 
+Optimization algorithm, but instead of using a single randomly selected training data, we use a small
+batch of randomly selected training datas per epoch (e.g. 50 randomly selected training datas in 
+each small batch), to calculate the Cost Function for just that small batch of training data and 
+hence the partial derivative (gradient).
+
+However, there is an additional step that makes it differ from Stochastic Gradient Descent Optimization 
+algorithm (this is a very common misconception!!):
+In Mini-Batch Gradient Descent Optimization algorithm, 
+- each epoch != pass through a small batch of randomly selected training data, rather,
+- each epoch = complete pass through all mini-batches created from the training dataset
+
+Steps of the Mini-Batch Gradient Descent Optimization algorithm:
+During each epoch:
+1. Shuffle the complete training dataset and split it into multiple mini-batches 
+2. Iterate through all the mini-batches, and for each small batch of randomly selected training datas to 
+   calculate the Cost Function for just that small batch of training data and hence the partial 
+   derivative (gradient):
+   -> Adjust weight/bias at the end of the epoch via the formula:
+            w⁽ᴸ⁾ = w⁽ᴸ⁾ - (learning rate, η * ∂C₀/∂w⁽ᴸ⁾)      (for the weights, w⁽ᴸ⁾)
+            b⁽ᴸ⁾ = b⁽ᴸ⁾ - (learning rate, η * ∂C₀/∂b⁽ᴸ⁾)      (for the biases, b⁽ᴸ⁾)
+
+So unlike Batch Gradient Descent Optimization algorithm and Stochastic Gradient Descent Optimization 
+algorithm, during each epoch, the weight/bias is updated multiple times, depending on the number of 
+mini-batches. Mini-Batch Gradient Descent Optimization algorithm ensures the full training dataset is 
+still being passed through, despite being broken down to mini-batches, like Batch Gradient Descent 
+Optimization algorithm, but except it is by small batches multiple times during each epoch.
+
+
+(Note: 
+ - What is an epoch?
+   An epoch is one complete pass through a set of the training dataset during the training of a 
+   ML model.
+)
+
+
+Source:
+- https://medium.com/geekculture/quick-guide-gradient-descent-batch-vs-stochastic-vs-mini-batch-f657f48a3a0
+  (Medium)
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+Why do we need these different variations of Gradient Descent Optimization algorithms?
+Because each variation of Gradient Descent Optimization algorithms has their own strengths, causing
+the application differences between them, which may work well for some ML problem but worse in
+others:
+
+Aspect                | Batch Gradient Descent                      | Stochastic Gradient Descent (SGD)   | Mini-Batch Gradient Descent                        
+Best Use Case         | Accuracy/stability over speed               | Large datasets or online learning   | Common in DL; good balance of speed and stability      
+Best Used Data Size   | Small to Medium                             | Large                               | Medium to Very Large                                   
+Speed                 | Slow                                        | Fast per update                     | Fast (GPU parallelizable)                            
+Stability             | Very Stable                                 | High Variance                       | Moderately Stable                                    
+Hardware Optimization | Inefficient for large datasets              | Memory efficient                    | Leverages GPU batch ops                              
+Convergence Quality   | Global minimum (if cost function is convex) | Noisy; may bounce around minimum    | Good approximation to minimum with learning schedule
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+How are Gradient Descent Optimization algorithms used in a Neural Network?
+(refer to Part 5 of the 'How is a Neural Network trained? (in a context)' section in the '2. What_is_a_Neural_
+Network_and_what_is_a_Feedforward_Neural_Network.txt' file in the 'Tutorial 2 - What is a Neuron and what 
+is Neural Network (Building a Neural Network Part 1)' folder)
