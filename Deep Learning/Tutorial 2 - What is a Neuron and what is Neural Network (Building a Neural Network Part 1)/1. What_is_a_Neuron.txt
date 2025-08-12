@@ -1,0 +1,77 @@
+What is a Neuron (aka a Single Neuron Neural Network)?
+An Neuron is each node in a (artificial) Neural Network. Similar to all ML algorithms, it takes in an
+input, and returns an output.
+
+
+//////////////////////////////////////////////////////////////////////////////////////
+
+
+How does a Neuron work?
+Specifically, it does 2 mathematical operations on the input to get the output. The output of the First
+mathematical operation is passed as the input of the second mathematical operation. Fortunately, we have seen
+both of these mathematical operations before in the ML tutorials.
+Visual representation of a Neuron in a context of a Classification Supervised Learning:
+
+Context Dataset of the Classification Supervised Learning:
++-----+----------------+--------+-----------+
+| age | have_insurance | income | education |
++-----+----------------+--------+-----------+
+|  43 |       1        | 25000  |     2     |
+|  22 |       0        | 25000  |     1     |
+|  25 |       0        | 28000  |     3     |
+|  47 |       1        | 72000  |     1     |
+|  52 |       0        | 68000  |     1     |
+|  46 |       1        | 75000  |     2     |
+|  56 |       1        | 80000  |     1     |
+|  55 |       0        | 77000  |     2     |
+| ... |      ...       |   ...  |    ...    |
++-----+----------------+--------+-----------+
+
+
+                                    y = 0.042 * x1 + 0.008 * x2 + 0.2 * x3 - 1.53
+                                                 ↑            ↑          ↑
+                                         (e.g.  Age       Income      Education )
+        INPUTS                                                                                  OUTPUTS
+         (x1)
+       e.g. Age (e.g. 43)
+           \
+            \ w1 = 0.042
+             \                                     NEURON
+              \           /------------------------------------------------------\
+               >---------/                            |                           \
+                         |  (Generally)               |  Activation Function      |
+         (x2)            |  Linear Function:          |  (Non-linear):            |
+Income (e.g. 25000) -----|  (e.g. Weighted Sum        |  (e.g. Sigmoid Function   |-----> z is between 0 or 1
+              w2 = 0.008 |  y = Σ(wᵢ * xᵢ) + b )      |  z = sigmoid(y)           |             (e.g. 1)
+                         |                            |    = 1 / (1 + 𝑒^−y) )     |
+                >--------\                            |                          /
+    w3 = 0.2   /          \-----------------------------------------------------/
+              /    
+         (x3)     
+         Education
+         (e.g. 2)
+
+From the visual representation of a Neuron above, 
+1. First mathematical operation is a (generally) Linear Function (Non-Linear Functions are used in more
+   complex variations of (artificial) Neural Networks)
+   Some of more common Linear Function used here are:
+   a. Weighted Sum (aka the SVLR or MVLR ML algorithm mathematical function) - y = Σ(wᵢ * xᵢ) + b, 
+      which is basically y = m1*x1 + m2*x2 + m3*x3 + ... + m?*x? + b written in short form
+   b. Convolution - y = Σ(wᵢ * xᵢ)
+   c. Average Pooling - y = 1/𝑛 ∑𝑥ᵢ
+   d. Learned Affine Normalization - y = 𝛾 * x̂ + 𝛽​
+
+   Some of (all of them are rare) Non-Linear Function used here are:
+   a. Multiplicative Interactions - y = 𝑥ᵢ * 𝑤ᵢ * 𝑥𝑗
+   b. Additive Attention - y = 𝑣^𝑇 * tanh⁡(𝑊_𝑞 * 𝑞 + 𝑊_k * 𝑘)
+   c. Max Pooling - y = max⁡(𝑥1, 𝑥2, …)
+   d. Quadratic Terms - y = ∑𝑤ᵢ * 𝑥ᵢ^2
+   e. Fourier Transform - y = 𝐹(𝑥)
+​
+​
+2. Second mathematical operation is an Activation Function (Non-linear) (it is ALWAYS Non-Linear, since
+   the role of the Activation Function is literally to introduce non-linearlity into the (artificial) 
+   Neural Network, allowing the network to learn and represent complex patterns in the data)
+
+   (refer to the 'Tutorial 3 - Activation Functions (Building a Neural Network Part 2)' folder for
+   more informaiton about Activation Functions)

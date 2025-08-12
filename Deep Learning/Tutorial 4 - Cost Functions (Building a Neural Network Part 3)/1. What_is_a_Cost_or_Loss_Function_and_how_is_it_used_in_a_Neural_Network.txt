@@ -1,0 +1,109 @@
+(Recall that we have covered about Loss and Cost Function back in the ML tutorials, under the
+'1. What_are_Optimization_Algorithms_and_General_Gradient_Descent_Optimization_Algorithm_and_what_
+is_a_Cost_Function_and_Mean_Squared_Error_Cost_Function.txt' file in the 'Tutorial 3 - Optimization 
+Algorithms, General Gradient Descent Optimzation Algorithm, Cost Functions and the Mean Squared Error 
+(MSE) Cost Function' folder) (This section is copy-pasted from that file)
+
+
+What is the Cost Function?
+The Cost Function is a mathematical function that measures how wrong a Machine Learning (ML) model is, when 
+it is finding a relationship between the dependent variable/predicted values by a ML model (output), and 
+the independent variables/features/actual values used to train the ML model (input).
+
+
+What is the difference between the Cost Function and Loss/Error Function?
+The terms 'Cost' Function and 'Loss/Error' Function are used interchangably, but both terms do have their distinct
+differences. 
+
+- The Loss/Error Function, quantifies the difference between a single actual data point value and a single 
+  prediction/data point value of the Machine Learning (ML) model. 
+- The Cost Function, quantifies the ML model's overall performance using the average of the Loss/Error Functions of an 
+  entire dataset, containing multiple actual data point values, with the multiple prediction/data point values of the 
+  Machine Learning (ML) model.
+
+However, in this tutorial, we will be using the the term 'Cost' function as it is more relevant for the context.
+
+
+
+What are the different types of Cost Functions?
+The type of Cost Function depends on the nature/type of the Machine Learning (ML) problem that it is solving.
+
+(Note: In this tutorial I am not going in-depth to explain every single type of Cost Function as the focus of this
+       tutorial is about the (general) Gradient Descent algorithm and the Mean Squared Error (MSE) Cost Function
+       only)
+
+
+Generally, the 2 most common different natures/types of ML problems are:
+1. Regression problem                    : involves predicting a continuous output variable (numeric value) based 
+                                           on input independent variables/features
+2. Classification problem                : involves predicting a discrete label/category based on input independent
+                                           variable/features
+   a. Binary Classification problem      : involves predicting categorical variables and classifying them into 
+                                           1 out of 2 outcomes based on input independent variables/features
+   b. Multi-class Classification problem : involves predicting categorical variables and classifying them into 
+                                           1 out of more than 2 outcomes based on input independent 
+                                           variables/features
+
+
+Hence, the 2 most common different types of Cost Functions are:
+1. Regression Cost Functions
+2. Classification Cost Functions
+   a. Binary Classification Cost Functions
+   b. Multi-class Classification Cost Functions
+
+
+Types of common Cost Functions that solve each nature/type of ML problem:
+1. Regression Cost Functions
+   -> Mean Squre Error (MSE) 
+      (Formula: MSE = (1/n) * Σᵢ(yᵢ-ŷᵢ)²)
+   -> Mean Absolute Error (MAE) 
+      (Formula: MAE = (1/n) * Σ|yᵢ-ŷᵢ|)
+
+2. Classification Cost Functions
+   a. Binary Classification Cost Functions
+      -> Binary Logistic Loss/Binary Cross-Entropy 
+         (Formula: BinaryCrossEntropy = -(1/n) * Σ[yᵢ*log(ŷᵢ) + (1-yᵢ) * log(1-ŷᵢ)])
+      -> Hinge Loss 
+         (Formula: Hinge Loss = (1/n) * Σmax(0, 1-yᵢ*ŷᵢ))
+
+   b. Multi-class Classification Cost Functions
+      -> Multi-Class/Categorical Logistic Loss / Multi-Class/Categorical Cross-Entropy 
+         (Formula: MultiClassCrossEntropy = -(1/n) * ΣᵢΣⱼ[yᵢⱼ * log(ŷᵢⱼ)])
+      -> Sparse Multi-Class/Categorical Logistic Loss / Sparse Multi-Class/Categorical Cross-Entropy
+         (Formula: SparseMultiClassCrossEntropy = -(1/n) * Σᵢlog(ŷᵢⱼ))
+      -> Kullback-Leibler Divergence (KL Divergence) 
+         (Formula: KLDivergence = ΣᵢΣⱼ[yᵢⱼ * log(yᵢⱼ/ŷᵢⱼ)])
+
+(yᵢ: represents actual data point value | ŷᵢ: represents prediction/data point value | n: represents the number
+ of data points)
+
+
+Note: - You might have heard about some of these types of Cost Functions being associated with a particular 
+        ML algorithm, such as:
+        -> Mean Square Error (MSE)/Mean Absolute Error (MAE) being associated with Single Variable Linear 
+           Regression (SVLR) and Multiple Variable Linear Regression (MVLR)
+        -> Binary Logistic Loss/Binary Cross-Entropy being associated with Binary Logistic Regression (BLR) 
+           ML algorithm 
+        -> Multi-Class/Categorical Logistic Loss / Multi-Class/Categorical Cross-Entropy or 
+           Sparse Multi-Class/Categorical Cross-Entropy being associated with Multinominal Logistic 
+           Regression (MLR) ML algorithm 
+        -> Hinge Loss being associated with Support Vector Machines (SVM) ML algorithm
+
+        These associations exist because of the compatible characteristics of the ML algorithm with
+        the mathematical property of the Cost Function (mathematical equation).
+
+
+Source: https://www.datacamp.com/tutorial/loss-function-in-machine-learning (datacamp) (for the difference 
+        between between the terms 'Cost Function' and 'Lost function')
+        https://machinelearningmastery.com/how-to-choose-loss-functions-when-training-deep-learning-neural-networks/ 
+        (Machine Learning Mastery) (for the Binary Classification Cost Functions and Multi-Class 
+        Classification Cost Functions)
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+
+
+How are Cost Functions used in a Neural Network?
+(refer to Part 3 of the 'How is a Neural Network trained? (in a context)' section in the '2. What_is_a_Neural_
+Network_and_what_is_a_Feedforward_Neural_Network.txt' file in the 'Tutorial 2 - What is a Neuron and what 
+is Neural Network (Building a Neural Network Part 1)' folder)

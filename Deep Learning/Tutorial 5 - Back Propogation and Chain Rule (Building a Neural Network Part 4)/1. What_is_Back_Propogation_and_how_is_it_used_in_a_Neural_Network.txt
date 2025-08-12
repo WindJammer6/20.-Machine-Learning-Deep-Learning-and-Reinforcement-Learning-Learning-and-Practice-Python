@@ -1,0 +1,13 @@
+What is Back Propogation?
+Back Propogation uses chain rule to calculate the partial derivatives (gradients) for the unique weight and 
+bias for each Neuron in the FNN, which will be used in the Gradient Descent Optimisation algorithm (see 'Part 5')
+to update the current weight and bias for each Neuron.
+
+
+////////////////////////////////////////////////////////////////////////////////
+
+
+How is Back Propogation used in a Neural Network?
+(refer to Part 4 of the 'How is a Neural Network trained? (in a context)' section in the '2. What_is_a_Neural_
+Network_and_what_is_a_Feedforward_Neural_Network.txt' file in the 'Tutorial 2 - What is a Neuron and what 
+is Neural Network (Building a Neural Network Part 1)' folder)

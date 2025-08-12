@@ -1,0 +1,495 @@
+What is a Neural Network (NN)?
+It is made up of many Neurons arranged in layers, and the layers are of Neurons are interconnected with one 
+another. 
+
+
+//////////////////////////////////////////////////////////////////////////////
+
+
+Traits of Neural Networks
+Simple NN vs Deep NN:
+- Simple NN refers to NN that only have 1 hidden layer. 
+- Deep NN refers to NN that have 2 or more hidden layers.
+
+Dense NN vs Non-dense NN:
+- Neurons in one layer is all connected to all Neurons in the next layer.
+- Neurons in one layer is not all connected to all Neurons in the next layer.
+
+
+
+What are some common variations of Neural Networks?
+Here is a non-exhaustive list of variations of NN. They differ from one another based on how 
+the Neurons are connected between layers, whether the NN is dense or non-dense and the Linear
+Function and Non-Linear Function used in the Neurons.
+
+(Note: The variations are not determined by whether the NN is simple or deep, as any variant
+of NN can have variable number of hidden layers (except for Neuron/Perceptron) (it is a 
+variable hyper-parameter to tune the accuracy of the NN model))
+
+- Neuron/Perceptron (Dense NN)
+- Feedforward Neural Network (FNN)/Multilayer Perceptrons (MLP) (Dense NN)
+- Convolutional Neural Network (CNN) (Non-dense NN)
+- Recurrent Neural Network (RNN) (Dense NN)
+  -> Long/Short Term Memory (LSTM) (variant of RNN) (Dense NN)
+  -> Gated Recurrent Unit (GRU) (variant of RNN) (Dense NN)
+- AutoEncoders (AE) (Dense NN)
+- Generative Adversarial Network (GAN) (Dense NN)
+- Transformers (Non-dense NN)
+
+and many more, etc. 
+
+Source(s):
+- https://medium.com/data-science/the-mostly-complete-chart-of-neural-networks-explained-3fb6f2367464 (Medium)
+- https://www.geeksforgeeks.org/types-of-neural-networks/ (GeeksforGeeks)
+
+
+//////////////////////////////////////////////////////////////////////////////
+
+
+What is a Feedforward Neural Network (FNN)?
+When people talk about NN, they are probably talking about FNN. FNN is usually thought of as the general
+form of NN, and most variations of NN are basically variants/looks somewhat similar to FNN.
+
+FNN is a type of NN where information flows in a single direction, from the input layer through the hidden
+layers to the output layer, without loops or feedback.
+
+
+Architecture of a Feedforward Neural Network (FNN)
+Visual representation of a FNN (its not the best visual representation but it gives a general idea):
+Input Layer       Hidden Layers    Output Layer
+
+   x₁   ● ─────┐
+               │
+   x₂   ● ─────┼────● ... ●────────────\  
+               │                        ●
+   x₃   ● ─────┼────● ... ●────────────/
+               │  
+   x₄   ● ─────┘  
+
+FNN is made up of 3 different layers,
+- Input Layer - Consist of 1 layer. It is NOT made up of Neurons, rather, it is simply made of the input value 
+                of the respective features, which will be passed into the first layer of the hidden layer. i.e. 
+                No computation/matehmatical operation is done here.
+
+                The number of 'units' here corresponds to the number of input features of the dataset.
+
+- Hidden Layer - Consist of 0 to as many layers as required. It is made up of Neurons. They perform most of the
+                 computations and applies a set of weights a biases to the input data, followed by an activation
+                 function to introduce non-linearlity.
+
+                 The number of Neurons in the layers in the hidden layer do not have to follow (can have more
+                 or less) that of the input layer or output layer, you can vary them as you see fit (treat is
+                 as a hyperparameter). Additionally, the number of Neurons can vary between different layers 
+                 in the hidden layer.                 
+                 
+- Output Layer - Consist of 1 layer. It is made up of Neurons. 
+
+                 The number of Neurons here corresponds to the number of outputs of the dataset.
+
+
+(Note: 
+- Why is it called 'Feedfoward'?
+  Because its what it is, a feed forward only NN, with no feedbacks. Its used to distinguish itself from 
+  variants of NN, such as the Recurrent Neural Network (RNN), which has loops or feedback in its structure,
+  and is not purely feedforward.
+)
+
+
+
+Source(s):
+- https://stackoverflow.com/questions/32514502/neural-networks-what-does-the-input-layer-consist-of (Stack Overflow)
+  (where it is mentioned that the input layer is NOT made of Neurons, but just contains the input value only)
+- https://www.geeksforgeeks.org/layers-in-artificial-neural-networks-ann/ (GeeksforGeeks)
+
+
+/////////////////////////////////////////////////////////////////////////////////
+
+
+How is a Neural Network trained?
+A NN is trained (i.e. finding the best set of weights and biases) via various algorithms and functions 
+in the following order:
+
+Part 1. Instantiantiating the Neural Network Architecture
+        (built with many Neurons, organised into the 
+        input layer, hidden layers and output layer)
+       
+        (will be discussed in this 'Tutorial 2 - What is a Neuron 
+        and what is Neural Network (Building a Neural Network Part 1)'
+        folder)
+                      |
+                     \ /
+Part 2. Deciding the Linear Function and Activation Function to
+        use in the hidden layer and output layer
+ 
+       (will be discussed in the 'Tutorial 3 - Activation Functions 
+       (Building a Neural Network Part 2)' folder)
+                      |
+                     \ /
+Part 3. Forward Pass of the training data, calculation of the Cost value 
+        via the selected Cost Function
+ 
+        (will be discussed in the 'Tutorial 4 - Cost Functions (Building 
+        a Neural Network Part 3)' folder)
+                      |
+                     \ /
+Part 4. Back propogation i.e. using chain rule to calculate the       ---
+        partial derivatives (gradients) for the unique weight and bias  |
+        for each Neuron in the NN                                       |
+                                                                        |
+        (will be discussed in the 'Tutorial 5 -  Back Propogation       |
+        and Chain Rule (Building a Neural Network Part 4)' folder)      |
+                      |                                                 |
+                     \ /                                                 > Works together to update the weights and biases to 
+Part 5. Gradient descent Optimization algorithm i.e. use the            |  make the Neural Network smarter throughout the iterations
+        calculated partial derivatives (gradients) for the unique weight|
+        and bias for each Neuron in the NN, along with learning rate    |
+        to update the weights and biases                                |
+                                                                        |
+        (will be discussed in the 'Tutorial 6 - Gradient Descent        |
+        Optimzation Algorithm (Building a Neural Network Part 5)'       |
+        folder)                                                       ---
+
+Iterating Part 1 to 5. The process of Part 1 to 5 is then 
+                       iterated/repeated throughout the training data.
+
+
+
+
+Comparing the training of a Machine Learning (ML) algorithm vs training of a Neural Network
+The most prominent step that is different between the traning of a ML algorithm and training of a NN is the
+back propogation step.
+
+Recall that in the ML tutorials, to find the best set of weights and biases, ML algorithms like SVLR/MVLR 
+ML algorithm and BLR/MLR ML algorithm can simply find the partial derivative (gradient) from the selected
+Cost Function and immediately apply them in updating of the current weights and biases since they are not
+'hidden' in 'hidden layers'.
+
+However, a NN can be thought of as basically a layered SVLR/MVLR ML algorithm or BLR/MLR ML algorithm, and that
+in order to find the unique partial derivative (gradient) from the selected Cost Function for the Neurons in 
+the hidden layers, you need to use this additional step of back propogation to find the individual 
+partial derivative (gradient) from the selected Cost Function for each of them in the hidden layers.
+
+
+/////////////////////////////////////////////////////////////////////////////////
+
+
+How is a Neural Network trained? (in a context)
+How does the process of Feedforward work in an FNN? How does information flow from input layer, through the 
+hidden layers to the output layer?
+Explaining this in a context to predict if a person would buy insurance given their 'age', 'income' and 
+'education':
+Context Dataset of the Classification Supervised Learning:
++-----+----------------+--------+-----------+
+| age | have_insurance | income | education |
++-----+----------------+--------+-----------+
+|  43 |       1        | 25000  |     2     |
+|  22 |       0        | 25000  |     1     |
+|  25 |       0        | 28000  |     3     |
+|  47 |       1        | 72000  |     1     |
+|  52 |       0        | 68000  |     1     |
+|  46 |       1        | 75000  |     2     |
+|  56 |       1        | 80000  |     1     |
+|  55 |       0        | 77000  |     2     |
+| ... |      ...       |   ...  |    ...    |
++-----+----------------+--------+-----------+
+
+
+Part 1.
+Based on this context dataset, we decided to use FNN, and the FNN would probably look like this:
+Visual representation of a FNN in a context:
+      Input Layer       Hidden Layers     Output Layer
+
+  age x₁       ● ─────┐
+                      │
+  income x₂    ● ─────┼────●────●────────────\  
+                      │                        ●  have_insurance y
+  education x₃ ● ──────────●────●────────────/
+
+(assume we decided to have 2 hidden layers of 2 Neurons each)
+
+
+Part 2.
+Assume we have decided to use:
+- Weighted Sum as the Linear Function for the hidden layers
+- Weighted Sum as the Linear Function for the output layer
+- ReLU as the Activation Function in the hidden layers
+- Sigmoid as the Activation Function in the output layer
+
+
+Part 3.
+How does Forward Pass work?
+For each row of data in the context dataset, we start from the input layer, where each 'unit' stores 
+a input value.
+
+(Input Layer to First Hidden Layer)
+These input values from the input layer are passed as the input values for the first hidden layer. Each 
+Neuron in the first hidden layer probably looks like this:
+        INPUTS                                                                                  OUTPUTS
+         (x1)
+       e.g. Age (e.g. 43)
+           \
+            \ w1 = 0.042
+             \                                     NEURON
+              \           /------------------------------------------------------\
+               >---------/                            |                           \
+                         |  (Generally)               |  Activation Function      |
+         (x2)            |  Linear Function:          |  (Non-linear):            |
+Income (e.g. 25000) -----|  (e.g. Weighted Sum        |  (e.g. Sigmoid Function   |-----> z ('activation' value)
+              w2 = 0.008 |  y = Σ(wᵢ * xᵢ) + b )      |  z = sigmoid(y)           |
+                         |                            |    = 1 / (1 + 𝑒^−y) )     |
+                >--------\                            |                          /
+    w3 = 0.2   /          \-----------------------------------------------------/
+              /    
+         (x3)     
+         Education
+         (e.g. 2)
+
+The Weighted Sum Linear Function (first mathematical operation) would be: y = w1 * x1 + w2 * x2 + x3 * x3 + b
+The ReLU Function Activation Function (second mathematical operation) would be: z = A(y) = max(0, y) 
+
+And you simply pass the input layer's input value, x1 = 43, x2 = 25000, and x3 = 2 into the first hidden
+layer Neuron's first mathematical operation, the Weighted Sum Linear Function -> which the output will be
+passed into the second mathematical operation the ReLU Function Activation Function -> then its output,
+which will be called the 'activation' value will be used as the input for the second hidden layer.
+
+
+(First Hidden Layer to Second Hidden Layer)
+These output values of the first hidden layer are passed as the input values for the second hidden layer. Each 
+Neuron in the second hidden layer probably looks like this:
+        INPUTS                                                                                  OUTPUTS
+         (x1)                                                                       
+    e.g. From first neuron
+         in first hidden layer (e.g. 200)
+            \ w1 = 0.080
+             \                                     NEURON
+              \           /------------------------------------------------------\
+               >---------/                            |                           \
+                         |  (Generally)               |  Activation Function      |
+                         |  Linear Function:          |  (Non-linear):            |
+                         |  (e.g. Weighted Sum        |  (e.g. ReLU Function      |-----> z ('activation' value)
+                         |   y = Σ(wᵢ * xᵢ) + b )     |  z = A(y)                 |             
+                         |                            |    = max(0, y) )          |
+                >--------\                            |                          /
+    w2 = 0.12  /          \-----------------------------------------------------/
+              /    
+         (x2)     
+    e.g. From second neuron
+         in first hidden layer (e.g. 150)
+
+The Weighted Sum Linear Function (first mathematical operation) would be: y = w1 * x1 + w2 * x2 + b
+The ReLU Function Activation Function (second mathematical operation) would be: z = A(y) = max(0, y) 
+
+And you simply pass the first hidden layer's output value, x1 = 200 and x2 = 150 into the second hidden
+layer Neuron's first mathematical operation, the Weighted Sum Linear Function -> which the output will be
+passed into the second mathematical operation the ReLU Function Activation Function -> then its output,
+which will be called the 'activation' value will be used as the input for the output layer.
+
+IMPORTANT NOTE: 
+Comparing the Neurons in the first hidden layer and the second hidden layer, note the important differences:
+- The input values of the first hidden layers came from the input layer, and there is 3 inputs values for
+  each Neuron in the first hidden layer
+- As a result, the Weighted Sum Linear Function (first mathematical operation) formula for the Neurons in the
+  first hidden layer ('y = w1 * x1 + w2 * x2 + x3 * x3 + b') differs from that for the Neurons in the second 
+  hidden layer ('y = w1 * x1 + w2 * x2 + b') to accomodate for the higher number of input values
+
+
+ANOTHER IMPORTANT NOTE (Regarding Forward Pass):
+Problem of Symmetry and the need to 'break the Symmetry'
+- I had a question as I was documenting the process of Forward Pass, which is, how does the process of
+  Forward Pass differ for each Neuron? Since all Neurons in the first hidden layer is taking the same input
+  value, wouldn't all the weights and biases end up the same down the hidden layers to the output layer
+  during the training of NN?
+
+  And, would this be the case even if I instantiate all the weights and biases to be the same value?
+
+- So this is actually true, and that it is precisely if you instantiate all the weights and biases to be 
+  the same value, it will cause all the weights and biases to end up the same down the hidden layers to the 
+  output layer during the training of NN. Hence, this is why you MUST initialize all weights and biases
+  to a random value ('breaking the symmetry'), which will allow each Neuron to learn different features 
+  during training by producing different outputs during the Forward Pass and receiving different partial 
+  derivative (gradients) during Back Propagation and Gradient Descent Optimization algorithm, which will
+  lead to divergence of the weights and biases value (they will end up with different values).
+
+Source(s):
+- https://stackoverflow.com/questions/20027598/why-should-weights-of-neural-networks-be-initialized-to-random-numbers
+  (Stack Overflow) (about the problem of symmetry, where all weights ending up being the same value during
+  NN training if all weights and biases in the Neurons are initialized with the same value)
+
+
+
+(Second Hidden Layer to Output Layer)
+These output values of the second hidden layer are passed as the input values for the output layer. The sole
+Neuron in the output layer probably looks like this:
+        INPUTS                                                                                  OUTPUTS
+         (x1)                                                                       
+    e.g. From first neuron
+         in second hidden layer (e.g. 30)
+            \ w1 = 0.480
+             \                                     NEURON
+              \           /------------------------------------------------------\
+               >---------/                            |                           \
+                         |  (Generally)               |  Activation Function      |
+                         |  Linear Function:          |  (Non-linear):            |
+                         |  (e.g. Weighted Sum        |  (e.g. Sigmoid Function   |-----> z is between 0 or 1 OR ŷ
+                         |   y = Σ(wᵢ * xᵢ) + b )     |  z = sigmoid(y)           |             
+                         |                            |    = 1 / (1 + 𝑒^−y) )     |
+                >--------\                            |                          /
+    w2 = 0.09  /          \-----------------------------------------------------/
+              /    
+         (x2)     
+    e.g. From second neuron
+         in second hidden layer (e.g. 250)
+
+The Weighted Sum Linear Function (first mathematical operation) would be: y = w1 * x1 + w2 * x2 + b
+The Sigmoid Function Activation Function (second mathematical operation) would be: z = sigmoid(y) =  1 / (1 + 𝑒^−y) 
+
+And you simply pass the second hidden layer's output value, x1 = 30 and x2 = 250 into the second hidden
+layer Neuron's first mathematical operation, the Weighted Sum Linear Function -> which the output will be
+passed into the second mathematical operation the ReLU Function Activation Function -> then its output,
+which will be called the 'activation' value will be used as the input for the output layer. In this case, the
+'activation' value is the predicted output, ŷ of the FNN.
+
+
+
+How is the Cost value calculated with the Cost Function?
+(Second Hidden Layer to Output Layer)
+These output values of the second hidden layer are passed as the input values for the output layer. The sole
+Neuron in the output layer probably looks like this:
+        INPUTS                                                                                  OUTPUTS
+         (x1)                                                                       
+    e.g. From first neuron
+         in second hidden layer (e.g. 30)
+            \ w1 = 0.480
+             \                                     NEURON
+              \           /------------------------------------------------------\
+               >---------/                            |                           \
+                         |  (Generally)               |  Activation Function      |
+                         |  Linear Function:          |  (Non-linear):            |
+                         |  (e.g. Weighted Sum        |  (e.g. Sigmoid Function   |-----> z is between 0 or 1 OR ŷ
+                         |   y = Σ(wᵢ * xᵢ) + b )     |  z = sigmoid(y)           |             
+                         |                            |    = 1 / (1 + 𝑒^−y) )     |       y represents the actual output
+                >--------\                            |                          /        according to the context dataset
+    w2 = 0.09  /          \-----------------------------------------------------/         (e.g. 0 or 1)
+              /    
+         (x2)                                                                             C₀ = - (1 / n) * Σ[yᵢ * log(ŷᵢ) + (1 - yᵢ) * log(1 - ŷᵢ)]
+    e.g. From second neuron                                                               (Binary Logistic Loss/Binary Cross-Entropy Cost Function)
+         in second hidden layer (e.g. 250)
+
+From the 'How does Forward Pass work?' section, we established that the 'activation' value of the sole Neuron in 
+the output layer is the predicted output, k of the FNN.
+
+Assume we have decided to use:
+- Binary Logistic Loss/Binary Cross-Entropy Cost Function as the Cost Function for the FNN
+
+In this context,
+-> ŷ represents the predicted output of the FNN 
+-> y represents the actual output according to the context dataset
+
+The Binary Logistic Loss/Binary Cross-Entropy Cost Function would be: Cost value, C₀ = - (1 / n) * Σ[yᵢ * log(ŷᵢ) + (1 - yᵢ) * log(1 - ŷᵢ)]
+
+And you simply pass the predicted output of the FNN, ŷ, and actual output according to the context dataset, y,
+into the Binary Logistic Loss/Binary Cross-Entropy Cost Function to calculate the Cost value, C₀.
+
+
+
+Part 4.
+Back Propogation uses chain rule to calculate the partial derivatives (gradients) for the unique weight and 
+bias for each Neuron in the FNN, which will be used in the Gradient Descent Optimisation algorithm (see 'Part 5')
+to update the current weight and bias for each Neuron.
+
+Before to look at the Back Propogation chain rule chain formula, common literature sources have a slightly
+different naming of the variables (there is no change in any numerical values!) of the Neuron in documenting
+the Back Propogation chain rule chain formula:
+        INPUTS                                                                                  OUTPUTS
+         (x1)                                                                       
+    e.g. From first neuron
+         in second hidden layer (e.g. 30)
+            \ w1 = 0.480
+             \                                     NEURON
+              \           /------------------------------------------------------\
+               >---------/                            |                           \
+                         |  (Generally)               |  Activation Function      |
+                         |  Linear Function:          |  (Non-linear):            |
+                         |  (e.g. Weighted Sum        |  (e.g. Sigmoid Function   |-----> a is between 0 or 1 OR ŷ
+                         |   z = Σ(wᵢ * xᵢ) + b )     |  a = sigmoid(z)           |             
+                         |                            |    = 1 / (1 + 𝑒^−z) )     |       y represents the actual output
+                >--------\                            |                          /        according to the context dataset
+    w2 = 0.09  /          \-----------------------------------------------------/         (e.g. 0 or 1)
+              /    
+         (x2)                                                                             C₀ = Cost Function(y, ŷ)
+    e.g. From second neuron
+         in second hidden layer (e.g. 250)
+
+Note the difference in variables naming compared to Part 1, 2 and 3:
+- Within the Neuron, the 'y' is now labelled as 'z' ('pre-activation' value, the output of the Linear 
+  Function (first mathematical operation), and hence input of the Activation Function (second mathematical 
+  operation))
+- Within the Neuron and at the output, the 'z' is now labelled as 'a' ('activation' value, the output of the 
+  Activation Function (second mathematical operation))
+
+
+The Back Propogation chain rule has the following forumla: 
+   ∂C₀/∂w⁽ᴸ⁾ = ∂z⁽ᴸ⁾/∂w⁽ᴸ⁾ * ∂a⁽ᴸ⁾/∂z⁽ᴸ⁾ * ∂C₀/∂a⁽ᴸ⁾ (for weights)  OR
+   ∂C₀/∂b⁽ᴸ⁾ = ∂z⁽ᴸ⁾/∂b⁽ᴸ⁾ * ∂a⁽ᴸ⁾/∂z⁽ᴸ⁾ * ∂C₀/∂a⁽ᴸ⁾ (for biases)
+
+where,
+- ∂w⁽ᴸ⁾: The partial derivative with respect to the weight(s) in layer 𝐿
+- ∂a⁽ᴸ⁾: The partial derivative with respect to the activation(s) in layer 𝐿
+- ∂C₀: The partial derivative with respect to the Cost/Loss value
+- ∂z⁽ᴸ⁾: The  partial derivative with respect to the pre-activation value 𝑧 in layer 𝐿
+
+hence,
+- ∂C₀/∂w⁽ᴸ⁾:   The partial derivative (gradient) for the unique weight, w⁽ᴸ⁾/bias, b⁽ᴸ⁾, for each Neuron in 
+  OR ∂C₀/∂b⁽ᴸ⁾ the FNN that will be used in the Gradient Descent Optimisation algorithm (see 'Part 5') to
+               update the current weight, w⁽ᴸ⁾/bias, b⁽ᴸ⁾, for each Neuron.
+
+               The partial derivative (gradient) is to be found from the 3 terms defined below via the back
+               propogation chain rule formula: 
+               -> ∂C₀/∂w⁽ᴸ⁾ = ∂z⁽ᴸ⁾/∂w⁽ᴸ⁾ * ∂a⁽ᴸ⁾/∂z⁽ᴸ⁾ * ∂C₀/∂a⁽ᴸ⁾ (for weights)
+               -> ∂C₀/∂b⁽ᴸ⁾ = ∂z⁽ᴸ⁾/∂b⁽ᴸ⁾ * ∂a⁽ᴸ⁾/∂z⁽ᴸ⁾ * ∂C₀/∂a⁽ᴸ⁾ (for biases)
+
+​- ∂z⁽ᴸ⁾/∂w⁽ᴸ⁾:   The partial derivative that expresses how the 'pre-activation' value, a⁽ᴸ⁾, (output
+  OR ∂z⁽ᴸ⁾/∂b⁽ᴸ⁾ of the Linear Function (first mathematical operation)) changes with respect to its 
+                 weights, w⁽ᴸ⁾/bias, b⁽ᴸ⁾, layer 𝐿.
+
+                 The partial derivative is from the Linear Function (first mathematical operation), z⁽ᴸ⁾.
+
+- ∂a⁽ᴸ⁾/∂z⁽ᴸ⁾: The partial derivative that expresses how the 'activation' value, a⁽ᴸ⁾, changes with respect to its
+               'pre-activation' value, z⁽ᴸ⁾, in layer 𝐿.
+
+               The partial derivative is from the Activation Function (second mathematical operation), a⁽ᴸ⁾.
+
+- ∂C₀/∂a⁽ᴸ⁾: The partial derivative that expresses how the cost value changes with respect to the 'activation'
+             value, a⁽ᴸ⁾, in layer 𝐿, specifically for this term, it will be the output layer, and the
+             'activation' value, a⁽ᴸ⁾, will be the 'activation' output, a⁽ᴸ⁾,
+
+             The partial derivative is from the Cost Function, C₀.
+
+
+Part 5.
+Now that we have the partial derivative (gradient) for the unique weight/bias for each Neuron in the FNN,
+we can use the Gradient Descent Optimization algorithm to update the current weight, w⁽ᴸ⁾/bias, 
+b⁽ᴸ⁾, for each Neuron, which simply just states these formula:
+            w⁽ᴸ⁾ = w⁽ᴸ⁾ - (learning rate, η * ∂C₀/∂w⁽ᴸ⁾)      (for the weights, w⁽ᴸ⁾)
+            b⁽ᴸ⁾ = b⁽ᴸ⁾ - (learning rate, η * ∂C₀/∂b⁽ᴸ⁾)      (for the biases, b⁽ᴸ⁾)
+
+Note:
+- Learning rate, η, is used to diminish the partial derivative (gradient), so the Gradient Descent 'step' 
+  isn't too big, i.e. we have control on how big of a 'step' to take, since too big a 'step' may cause us 
+  to miss the local minima
+
+
+
+Iterating Part 1 to 5.
+Finally, this process from Part 1 to 5 is done for each row of training data in our context dataset, and
+it repeats as we go through all the training data in our context dataset.
+
+
+
+
+Source(s):
+- https://www.youtube.com/watch?v=Ilg3gGewQ5U (3Blue1Brown) (YouTube video by 3Blue1Brown titled, 'Backpropagation, intuitively | DL3') 
+  (about Back Propogation and chain rule)
+- https://www.youtube.com/watch?v=tIeHLnjs5U8 (3Blue1Brown) (YouTube video by 3Blue1Brown titled, 'Backpropagation calculus | DL4') 
+  (about Back Propogation and chain rule)
+

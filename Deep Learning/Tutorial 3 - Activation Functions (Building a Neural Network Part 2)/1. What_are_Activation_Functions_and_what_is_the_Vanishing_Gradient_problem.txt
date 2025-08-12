@@ -1,0 +1,238 @@
+What is an Activation Function?
+As we have roughly covered in the '1. What_is_a_Neuron.txt' file in the 'Tutorial 2 - What is a Neuron' 
+folder.
+
+Second mathematical operation in a Neuron is an Activation Function (Non-linear) (it is ALWAYS Non-Linear, 
+since the role of the Activation Function is literally to introduce non-linearlity into the (artificial) 
+Neural Network, allowing the network to learn and represent complex patterns in the data)
+
+Some of more common Activation Function used here are:
+a. Sigmoid Function (aka the BLR ML algorithm mathematical function) - z = sigmoid(y) = 1 / (1 + 𝑒^−y)
+   Visualisation of a Sigmoid function:
+        y
+        ^
+    1.0 |
+        |                                    _------------------
+        |                                  _/
+        |                                 / 
+        |                                |
+    0.5 |                                |
+        |                              _/
+        |                            _/
+        |             _____________- 
+        | 
+    0.0 |----------------------------------------------------------------------> x
+
+   When the output, z is: 
+   - '>= 0.5', then neuron is said to have 'fired'/activated (in context of the insurance dataset in the
+     '1. What_is_a_Neuron.txt' file, is will buy insurance) 
+   - '< 0.5', then neuron is said to have 'not fired'/deactivated (in context of the insurance dataset in the
+     '1. What_is_a_Neuron.txt' file, is will not buy insurance) 
+
+b. Tanh Function (Hyperbolic Tangent Function) - z = tanh(y) = ( 2 / (1 + e^(−2y)) ) - 1  OR 
+                                                 z = tanh(y) = 2 * sigmoid(2y) − 1
+   Visualisation of a Tanh function:
+        y
+        ^
+    1.0 |
+        |                                    _------------------
+        |                                  _/
+        |                                 / 
+        |                                |
+    0.0 |----------------------------------------------------------------------> x
+        |                              _/
+        |                            _/
+        |             _____________- 
+        | 
+   -1.0 |
+   
+   is a shifted version of the sigmoid, allowing it to stretch across the y-axis, allowing it output values 
+   from -1 to 1 instead of 0 to 1 only.
+
+   When the output, z is: 
+   - '>= 0', then neuron is said to have 'fired'/activated (in context of the insurance dataset in the
+     '1. What_is_a_Neuron.txt' file, is will buy insurance) 
+   - '< 0', then neuron is said to have 'not fired'/deactivated (in context of the insurance dataset in the
+     '1. What_is_a_Neuron.txt' file, is will not buy insurance) 
+
+c. ReLU (Rectified Linear Unit) Function - z = A(y) = max(0, y)
+   Visualisation of a ReLU function:
+                                     y
+                                     ^
+                                     |         /
+                                     |        /
+                                     |       /
+                                     |      / 
+                                     |     /                           
+                                     |    /                            
+                                     |   / 
+                                     |  / 
+                                     | / 
+     ________________________________|/ 
+     ----------------------------------------------------------------------> x
+                                    0.0
+
+   this means that if the input y is positive, ReLU returns y, if the input is negative, it returns 0.
+
+   When the output, z is: 
+   - 'y > 0', z = y, then Neuron is said to have 'fired'/activated (in context of the insurance dataset in the
+     '1. What_is_a_Neuron.txt' file, is will buy insurance) 
+   - 'y <= 0', z = 0, then Neuron is said to have 'not fired'/deactivated (in context of the insurance dataset in the
+     '1. What_is_a_Neuron.txt' file, is will not buy insurance) 
+
+   (Note: Do NOT use ReLU Function in the output layer! Since the ReLU Function outputs values in the range [0, ∞),
+    hence it is unbounded, non-probabilistic, and not suitable for prediction, i.e. producing class probabilities 
+    or scores directly)
+
+d. Leaky ReLU (Rectified Linear Unit) Function - z = A(y) = max(0.1y, y)
+   Visualisation of a ReLU function:
+                                     y
+                                     ^
+                                     |         /
+                                     |        /
+                                     |       /
+                                     |      / 
+                                     |     /                           
+                                     |    /                            
+                                     |   / 
+                                     |  / 
+                                     | / 
+                                     |/ 
+     ----------------------------------------------------------------------> x
+                                __ / | 0.0
+                            __--     |
+                       __---         |
+
+   this means that if the input y is positive, ReLU returns y, if the input is negative, it returns 0.
+
+   When the output, z is: 
+   - 'y > 0', z = y, then Neuron is said to have 'fired'/activated (in context of the insurance dataset in the
+     '1. What_is_a_Neuron.txt' file, is will buy insurance) 
+   - 'y <= 0', z = 0.1y, then Neuron is said to have 'partially fired'/partially activated
+
+   (Note: Similarly, do NOT use Leaky ReLU Function in the output layer! Since the Leaky ReLU Function outputs 
+    values in the range (-∞, ∞), hence it is unbounded, non-probabilistic, and not suitable for prediction, 
+    i.e. producing class probabilities or scores directly)  
+
+e. Softmax Function (aka MLR ML algorithm mathematical function) - z = softmax(𝑧𝑖) = 𝑒^𝑧y / 𝐾∑𝑗=1 𝑒^y𝑗
+   
+   (Note: Important thing to note about the Softmax Function is that it is very rarely used in the hidden
+   layer, only at the output layer. It dosen't really make sense to use it in the hidden layers
+   since it outputs a probability distribution, rather than a single value.
+
+   They are more commonly used at most at the output layer, when a final sole prediction needs to be made 
+   across the different output predictions scores) 
+
+
+//////////////////////////////////////////////////////////////////////////////////
+
+
+So which Activation Function should I use in training my Neural Network?
+Choosing the best Activation Function for the problem you are trying to solve by training your Neural Network,
+there is no hard-and-fast rule, Activation Functions are like one of those hyper-parameters where you just 
+need to do trial and error. You just need to try all the different Activation Functions, and see which one
+gives you the best output.
+
+There are however, some general rules you can take reference from deciding which Activation Function
+to use in training your Neural Network.
+
+
+
+General rules for using Activation Functions in Neural Networks
+In the past, before the introduction of the ReLU Activation Function, the guideline was:
+"""
+    Use Sigmoid Function in output layer. All other places try to use Tanh Function (if possible).
+"""
+
+In modern times, after the introduction of the ReLU Activation Function, the guideline became:
+"""
+    For hidden layers if you are not sure which Activation Function to use, 
+    just use ReLU Function as your default choice.
+"""
+
+
+
+Why the shift in the general rules for using Activation Functions in Neural Networks towards the preferance
+of using ReLU Function in the hidden layers?
+This is due to a specific problem with the Sigmoid Function and Tanh Function: 
+   The Vanishing Gradient problem
+
+So what is the Vanishing Gradient problem?
+The Vanishing Gradient problem occurs when the partial derivative/gradients of the Cost/Loss Function 
+with respect to the weights/biases of the earlier hidden layers of a NN become vanishingly small as
+we back propogate the NN with the chain rule from the output layer. As As a result, the earlier hidden layers 
+receive little or no updated weight/bias information during back propagation, leading to slow convergence or 
+even stagnation of the learning process.
+
+One of the reasons why this occur is due to the choice of Activation Functions in the hidden layers. 
+Namely, choosing the Sigmoid Function and Tanh Function Activation Functions causes the Vanishing Gradient 
+problem.
+
+As seen from the Visualisations of the Sigmoid Function and Tanh Function Activation Functions, we can
+see as we tend to the extreme values of 0 or 1 for Sigmoid Function and -1 or 1 for Tanh Function, the
+partial derivative (gradient) becomes vanishingly small. And, this problem is exaggerated during back
+propogation, when the already small partial derivative (gradient) are multiplied together during chain 
+rule to find the partial derivative (gradient) used to update the current weight, w⁽ᴸ⁾/bias, b⁽ᴸ⁾, for 
+each Neuron.
+
+The Back Propogation chain rule has the following forumla: 
+   ∂C₀/∂w⁽ᴸ⁾ = ∂z⁽ᴸ⁾/∂w⁽ᴸ⁾ * ∂a⁽ᴸ⁾/∂z⁽ᴸ⁾ * ∂C₀/∂a⁽ᴸ⁾ (for weights)  OR
+   ∂C₀/∂b⁽ᴸ⁾ = ∂z⁽ᴸ⁾/∂b⁽ᴸ⁾ * ∂a⁽ᴸ⁾/∂z⁽ᴸ⁾ * ∂C₀/∂a⁽ᴸ⁾ (for biases)
+
+The Gradient Descent Optimization algorithm has the following forumla:
+   w⁽ᴸ⁾ = w⁽ᴸ⁾ - (learning rate, η * ∂C₀/∂w⁽ᴸ⁾)     (for the weights, w⁽ᴸ⁾)
+   b⁽ᴸ⁾ = b⁽ᴸ⁾ - (learning rate, η * ∂C₀/∂b⁽ᴸ⁾)      (for the biases, b⁽ᴸ⁾)
+
+(from the '2. What_is_a_Neural_Network_and_what_is_a_Feedforward_Neural_Network.txt' file in the 
+'Tutorial 2 - What is a Neuron and what is Neural Network (Building a Neural Network Part 1)' folder)
+
+For example, using Sigmoid Function/Tanh Function:
+Back Propogation chain rule:
+Using ∂C₀/∂w⁽ᴸ⁾ = ∂z⁽ᴸ⁾/∂w⁽ᴸ⁾ * ∂a⁽ᴸ⁾/∂z⁽ᴸ⁾ * ∂C₀/∂a⁽ᴸ⁾ (for weights),
+- ∂z⁽ᴸ⁾/∂w⁽ᴸ⁾ = 0.05
+- ∂a⁽ᴸ⁾/∂z⁽ᴸ⁾ = 0.01
+- ∂C₀/∂a⁽ᴸ⁾ = 0.5
+
+∂C₀/∂w⁽ᴸ⁾ = 0.05 * 0.01 * 0.5 = 0.00025 (so small!)
+
+Gradient Descent Optimization algorithm:
+Using w⁽ᴸ⁾ = w⁽ᴸ⁾ - (learning rate, η * ∂C₀/∂w⁽ᴸ⁾) (for the weights, w⁽ᴸ⁾),
+
+Let learning rate be 1,
+w⁽ᴸ⁾ = w⁽ᴸ⁾ - (1 * 0.00025) = w⁽ᴸ⁾ - 0.00025 (thats barely any changes to the weight!)
+
+
+
+So the ReLU Function solves this problem! It has a non-saturating activation function, which ensures 
+that the gradients flow freely across the network i.e. the partial derivative (gradient) does not shrink 
+through the layers.
+
+To further prove this, looking at the ReLU Function formula, z = A(y) = max(0, y), its partial derivative 
+(gradient) has a constant gradient of 1 for all positive input values 𝑦 > 0 (as long as Neurons are 
+'activated').
+
+For example, using ReLU Function:
+Back Propogation chain rule:
+Using ∂C₀/∂w⁽ᴸ⁾ = ∂z⁽ᴸ⁾/∂w⁽ᴸ⁾ * ∂a⁽ᴸ⁾/∂z⁽ᴸ⁾ * ∂C₀/∂a⁽ᴸ⁾ (for weights),
+- ∂z⁽ᴸ⁾/∂w⁽ᴸ⁾ = 0.05
+- ∂a⁽ᴸ⁾/∂z⁽ᴸ⁾ = 1
+- ∂C₀/∂a⁽ᴸ⁾ = 0.5
+
+∂C₀/∂w⁽ᴸ⁾ = 0.05 * 1 * 0.5 = 0.025 (it may look small, but this partial derivative (gradient) is a 100x
+                                    larger than that if we use the Sigmoid Function/Tanh Function)
+
+Gradient Descent Optimization algorithm:
+Using w⁽ᴸ⁾ = w⁽ᴸ⁾ - (learning rate, η * ∂C₀/∂w⁽ᴸ⁾) (for the weights, w⁽ᴸ⁾),
+
+Let learning rate be 1,
+w⁽ᴸ⁾ = w⁽ᴸ⁾ - (1 * 0.025) = w⁽ᴸ⁾ - 0.025 (more noticable changes to the weight!)
+
+
+
+Hence the shift in the general rules for using Activation Functions in Neural Networks towards the preferance
+of using ReLU Function in the hidden layers.
+
+
+Source(s):
+- https://medium.com/@amanatulla1606/vanishing-gradient-problem-in-deep-learning-understanding-intuition-and-solutions-da90ef4ecb54 
+  (Medium)

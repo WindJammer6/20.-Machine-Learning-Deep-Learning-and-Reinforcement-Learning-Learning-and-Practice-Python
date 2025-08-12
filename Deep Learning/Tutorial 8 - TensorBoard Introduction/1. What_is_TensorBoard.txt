@@ -1,0 +1,7 @@
+What is TensorBoard?
+TensorBoard is a powerful visualization tool designed specifically for ML workflows. 
+It provides insights into the training process of ML models, allowing developers to 
+track and optimize the performance of their models more effectively. 
+
+TensorBoard is often associated with TensorFlow, but it can be used with other ML 
+frameworks as well (e.g. PyTorch, etc.).

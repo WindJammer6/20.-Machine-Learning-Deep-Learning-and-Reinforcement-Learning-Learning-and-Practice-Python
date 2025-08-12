@@ -1,0 +1,102 @@
+What is PyTorch?
+Developed by Facebook (now Meta), PyTorch is one of the most of well known Deep Learning (DL) Python 
+libraries. It is an open source library that provides GPU acceleration, dynamic computation graphs, and an 
+intuitive interface for deep learning researchers and developers.
+
+PyTorch Deep Learning (DL) library documentation: https://docs.pytorch.org/docs/stable/index.html
+
+Source:
+- https://www.geeksforgeeks.org/getting-started-with-pytorch/ (GeeksforGeeks)
+
+
+
+What is TensorFlow?
+Developed by Google, TensorFlow is another one of the most of well known Deep Learning (DL) Python 
+libraries. It is an open source library for numerical computation and large-scale machine learning.
+
+TensorFlow Deep Learning (DL) library documentation: https://www.tensorflow.org/api_docs
+
+Source:
+- https://www.infoworld.com/article/2255099/what-is-tensorflow-the-machine-learning-library-explained.html 
+  (InfWworld)
+
+
+
+What is Keras?
+Unlike PyTorch or TensorFlow, Keras is not a full-fledged DL library. It is just a wrapper
+(in this context, it means some component/code used to surround and provide an interface to another 
+component, library, or system to allow easier integration and interaction with the wrapped functionality) 
+around 3 other ML libraries, TensorFlow 1.0, Microsoft Cognitive Toolkit (CNTK) and Theano.
+
+This is a bit weird but with the introduction of the more updated versions of TensorFlow, the Keras 
+wrapper was somehow instead became part of TensorFlow 2.0. So yeah, something to note.
+
+
+(Note: In these tutorials, we will be using TensorFlow!)
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+Difference between PyTorch and TensorFlow:
+                    | TensorFlow                                                  | PyTorch                                                    
+Developer           | Google                                                      | Facebook (now Meta)                                            
+Ease of Use         | ❌ Steeper learning curve (static graph)                    | ✅ More “Pythonic” and intuitive (dynamic graph)                
+Learning Curve      | Harder for beginners                                        | Easier for beginners and researchers                           
+Computation Graph   | Static by default (requires planning)                       | Dynamic (define-by-run, great for experimentation)             
+Performance         | ✅ Strong performance & deployment tools                    | ⚠️ Improving but slightly behind in large-scale deployments    
+Scalability         | ✅ Excellent for large-scale distributed training           | ⚠️ Catching up with newer tools for multi-GPU/machine training 
+Visualization Tools | ✅ Built-in TensorBoard                                     | ❌ Weaker built-in options (but can use third-party tools)      
+Deployment          | ✅ Robust (TF Serving, TF Lite, TF.js, Coral)               | ⚠️ Requires conversion (ONNX, TorchScript)                     
+Community Support   | ✅ Large, mature community                                  | ✅ Fast-growing, strong in academia and research                
+Industry Use        | Google, Uber, Nvidia, Airbnb                                | Facebook, Tesla, OpenAI (ChatGPT, DALL·E), Microsoft           
+Best For            | Scalable production pipelines                               | Fast prototyping, flexible research                            
+Flexibility         | Structured, but gaining flexibility (e.g., Eager Execution) | ✅ Very flexible; great for custom models                       
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+How to install and import PyTorch, TensorFlow and Keras Deep Learning (DL) libraries into your code?
+1. Installing and importing PyTorch:
+    Install PyTorch
+    "
+    pip install torch torchvision torchaudio
+    "
+
+    Importing PyTorch
+    "
+    Import pytorch
+
+    # Common submodules
+    import torch
+    import torch.nn as nn            # For building neural networks
+    import torch.optim as optim      # For optimizers like SGD, Adam
+    import torch.nn.functional as F  # For activation functions like relu, softmax
+    "
+
+2. Installing and importing TensorFlow and Keras:
+    Install TensorFlow
+    "
+    pip install tensorflow
+    "
+
+    Import TensorFlow and Keras (since now Keras is part of the more updated versions of TensorFlow)
+    "
+    import tensorflow as tf
+
+    from tensorflow import keras                # Import Keras from TensorFlow
+
+    # Common submodules
+    from tensorflow.keras import layers         # For layers like Dense, Conv2D
+    from tensorflow.keras import models         # For model building
+    from tensorflow.keras import optimizers     # For optimizers like Adam, SGD
+    from tensorflow.keras import losses         # For loss functions
+    from tensorflow.keras import datasets       # For built-in datasets like MNIST
+    "
+
+    (Note: You could install standalone Keras like this:
+     "
+     pip install keras
+     "
+     but it is not recommended!)

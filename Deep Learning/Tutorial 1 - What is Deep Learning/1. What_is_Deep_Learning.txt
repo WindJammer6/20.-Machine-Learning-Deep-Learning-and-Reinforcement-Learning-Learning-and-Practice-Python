@@ -1,0 +1,54 @@
+What is Deep Learning (DL)?
+(artificial) Neural Networks is a powerful Machine Learning (ML) algorithm that can be used as any of 
+the 4 ways/approaches of training a machine to be able to be capable of predicting outcomes and 
+classifying information without human intervention (i.e. Supervised learning, Unsupervised learning,
+Semi-supervised learning and Reinforcement learning). They are so powerful, such that there
+is an entire field of study about (artificial) Neural Networks, particularly on 'deep' 
+(artificial) Neural Networks, known as Deep Learning (DL).
+
+
+/////////////////////////////////////////////////////////////////////////////////
+
+
+Why is Deep Learning (DL) becoming so popular?
+1. Data Growth - for example, businesses nowadays all around the world have access to alot of 
+   data, many people post their content on social media
+
+2. Hardware Advancements - advancements in hardware. In the past, CPUs and GPUs in computers are very slow
+   (low computing power) and it takes hours for your computer to train a Neural Network. But now, your 
+   CPUs and GPUs in computers are very fast (high computing power) and you can train a Neural Network in
+   seconds
+
+3. Python and Opensource Ecosystem - Python is a very simple programming language and anyone with some
+   mathematical or statisics background can pick it up very quickly and start making (artificial) Neural 
+   Networks. Additionally, the creation of PyTorch (by Facebook) and TensorFlow (by Google) frameworks, 
+   makes it so much easier to build Neural Networks as well.
+
+4. Cloud - Nowadays you can run more computationally expensive programming jobs (such as
+   training a Neural Network) onto the Cloud, where they will run your programming job on another (more 
+   powerful) computer elsewhere in the Cloud, allowing you to speed it up. It saves you time and money
+   since you don't need to invest in better hardware on your computer to run computationally expensive 
+   programming jobs (such as training a Neural Network). 
+
+5. AI Boom - Big companies like Google have been moving towards being more AI-focused, causing many
+   big companies to follow in their footsteps as well, and if youre not using AI you are sort of behind.
+   This drove up the popularity of AI.
+
+
+/////////////////////////////////////////////////////////////////////////////////
+
+
+Why is a Graphics Processing Unit (GPU) preferred over a Central Processing Unit (CPU) for Deep Learning?
+GPU are originally developed for rendering graphics but is later adapted for general-purpose computing
+due to their ability to perform thousands of simple calculations simultaneously.
+
+GPU is preferred since it handles mathematical operations much faster and is specialised to do that, and
+has thousands of coures optimized for parallel processing, which is what Neural Networks are all about. 
+CPU is more general-purpose, and has fewer cores optimized for single-threaded performance, hence it
+does not handle mathematical operations as quickly as GPUs.
+
+
+Source(s):
+- https://azure.microsoft.com/en-us/blog/gpus-vs-cpus-for-deployment-of-deep-learning-models/ 
+  (Microsoft)
+- https://www.geeksforgeeks.org/why-deep-learning-need-gpu/ (GeeksforGeeks)
