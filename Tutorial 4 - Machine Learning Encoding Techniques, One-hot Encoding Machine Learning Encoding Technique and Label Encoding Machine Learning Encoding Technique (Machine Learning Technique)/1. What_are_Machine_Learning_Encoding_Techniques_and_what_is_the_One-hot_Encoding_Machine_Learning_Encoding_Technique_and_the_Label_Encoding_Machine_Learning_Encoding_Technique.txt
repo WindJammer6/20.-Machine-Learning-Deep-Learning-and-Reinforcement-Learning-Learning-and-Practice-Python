@@ -1,0 +1,355 @@
+In this tutorial, we will be focusing primarily on the One-hot Encoding ML Encoding Technique, instead
+of the Label Encoding ML Encoding Technique!
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+What are Machine Learning (ML) Encoding Techniques?
+Machine learning (ML) Encoding Techniques are methods used to convert categorical variables, storing 
+categorical data, into numerical data that can be processed by ML algorithms/models.
+
+2 of the most common Machine learning (ML) Encoding Techniques are:
+1. Label Encoding ML Encoding Technique
+2. One-hot Encoding (OHE) ML Encoding Technique
+
+
+What is Encoding?
+Encoding refers to the general process of converting data from one format/representation to another, typically 
+with an objective. (e.g. file type conversion (i.e. docs to pdf), characters to ASCII)
+
+
+(Note: 
+- There are other types of ML Encoding Techniques (e.g. Target Encoding, Binary Encoding, etc.), but
+  most of them can be thought as variants of these 2 most common ML Encoding Techniques
+- What is Encoding?
+  Encoding refers to the general process of converting data from one format/representation to another, typically 
+  with an objective. (e.g. file type conversion (i.e. docs to pdf), characters to ASCII)
+)
+
+
+Source(s): https://www.geeksforgeeks.org/feature-encoding-techniques-machine-learning/ (GeekforGeeks) (for the
+           different types of ML Encoding Techniques)
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////
+
+
+What are categorical variables?
+Categorical variables are a type of variable that contains data that can be divided into categories based on 
+specific characteristics (aka categorical data).
+(e.g. Gender: male or female, Color: green or red or blue, Location: monroe township or robinsville or west 
+      windsor, Socioeconomic status: high or medium or low, Satisfaction level: satisfied or neutral or 
+      dissatisfied, Education level: graduate or masters or PHD)
+
+There are 2 types of categorical variables, nominal categorical variables and ordinal categorical variables.
+
+
+What is the difference between nominal categorical variables and ordinal categorical variables?
+Nominal categorical variables represent categories with no intrinsic order or ranking among them. 
+(e.g. Gender: male or female, Color: green or red or blue, Location: monroe township or robinsville or west 
+      windsor)
+
+Ordinal categorical variables represent categories with a specific, inherent order or ranking among them.
+(e.g. Socioeconomic status: high or medium or low, Satisfaction level: satisfied or neutral or 
+      dissatisfied, Education level: graduate or masters or PHD)
+
+
+Source(s):
+https://researchmethod.net/categorical-variable/ (ResearchMethod.net)(for definition of categorical variables)
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+What is the One-hot Encoding (OHE)?
+One-hot Encoding (OHE) is a Machine Learning (ML) Encoding Technique that represents categorical variables,
+storing categorical data, as binary vectors. (these binary vectors are often represented by dummy variable
+columns, storing binary values, 0 and 1 (see the file '2. using_dummy_variables_to_create_the_One-hot_Encoded_
+dataset_(One-hot_Encoding_Machine_Learning_Encoding_Technique).py' for more on dummmy variables))
+
+It is ideally suited for nominal categorical variables, instead of ordinal categorical variables. (you will
+see why this is as you understand how the OHE ML Encoding Technique works in the section below 
+'How does the One-hot Encoding (OHE) ML Encoding Technique work in a context')
+
+
+(Note:
+- What is a binary vector?
+  A binary vector is a sequence of elements (bits) that can each take on one of two possible values: 0 or 1. 
+  (e.g. [1, 0, 0], a column of elements of either 0 or 1 in a table)
+)
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+What is Label Encoding?
+Label encoding is a Machine Learning (ML) Encoding Technique that represents categorical variables,
+storing categorical data, as numerical values.
+
+It is ideally suited for ordinal categorical variables, instead of nominal categorical variables. (you will
+see why this is as you understand how the Label Encoding ML Encoding Technique works in the section below 
+'How does the Label Encoding ML Encoding Technique work in a context')
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+Why do we need Machine Learning Encoding Techniques in a context:
+Lets say we have these datasets (a table of data):
+        education_level  | age | salary
+            graduate     | 25  | 55000
+            graduate     | 28  | 58000
+            graduate     | 32  | 60000
+            graduate     | 35  | 63000
+            graduate     | 40  | 67000
+            master's     | 27  | 61000
+            master's     | 30  | 64000
+            master's     | 34  | 68000
+            master's     | 37  | 71000
+            master's     | 41  | 75000
+              PhD        | 29  | 65000
+              PhD        | 33  | 69000
+              PhD        | 38  | 72000
+              PhD        | 45  | 78000
+              PhD        | 50  | 85000
+        ('education_level' column is storing 
+         ordinal categorical variables)
+
+    house_location    |    area    |    price
+   monroe township    |    2600    |    550000
+   monroe township    |    3000    |    565000
+   monroe township    |    3200    |    610000
+   monroe township    |    3600    |    680000
+   monroe township    |    4000    |    725000
+     robinsville      |    2600    |    575000
+     robinsville      |    2900    |    600000
+     robinsville      |    3100    |    620000
+     robinsville      |    3600    |    695000
+     west windsor     |    2600    |    585000
+     west windsor     |    2800    |    615000
+     west windsor     |    3300    |    650000
+     west windsor     |    3600    |    710000
+        ('house_location' column is storing 
+         nominal categorical variables)
+
+In the realm of Machine Learning (ML), while ML algorithms/models are good at handling numerical data, they
+are not good at handling categorical variables. Hence, here are where ML Encoding Techniques come into play. 
+
+Different ML Encoding Techniques (i.e. Label Encoding ML Encoding Technique and One-hot Encoding (OHE) ML 
+Encoding Technique) are used to handle different types of categorical variables during conversion of 
+categorical data to numeric data that can be process by ML algorithms/models.
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+How does the Label Encoding Machine Learning (ML) Encoding Technique work in a context:
+Lets say we have a dataset (a table of data) of 'salary' and 2 variables affecting the 'salary', the 'age' and 
+'education_level':
+        education_level  | age | salary
+            graduate     | 25  | 55000
+            graduate     | 28  | 58000
+            graduate     | 32  | 60000
+            graduate     | 35  | 63000
+            graduate     | 40  | 67000
+            master's     | 27  | 61000
+            master's     | 30  | 64000
+            master's     | 34  | 68000
+            master's     | 37  | 71000
+            master's     | 41  | 75000
+              PhD        | 29  | 65000
+              PhD        | 33  | 69000
+              PhD        | 38  | 72000
+              PhD        | 45  | 78000
+              PhD        | 50  | 85000
+        ('education_level' column is storing 
+         ordinal categorical variables)
+
+As the Label Encoding ML Encoding Technique is preferably used for ordinal category variables (e.g. Education 
+level: graduate or masters or PHD), what it does to handle the 'education_level' column, which is storing the 
+ordinal categorical variables, is, that it assigns the ordinal categorical variables storing the categorical 
+data, as numerical values, in a way that it preserves the order between the ordinal categorical variables.
+
+In this context, the Label Encoding ML Encoding Technique could possibly assign a higher numeric value to 
+PHD, to represent a higher education qualification, and a smaller numeric value to graduate, to represent a 
+lower education qualification like so:
+  "graduate" might be assigned the numerical value label of 0.
+  "masters" might be assigned the numerical value label of 1.
+  "PHD" might be assigned the numerical value label of 2.
+
+    education_level |  age |  salary
+           0        |  25  |  55000
+           0        |  28  |  58000
+           0        |  32  |  60000
+           0        |  35  |  63000
+           0        |  40  |  67000
+           1        |  27  |  61000
+           1        |  30  |  64000
+           1        |  34  |  68000
+           1        |  37  |  71000
+           1        |  41  |  75000
+           2        |  29  |  65000
+           2        |  33  |  69000
+           2        |  38  |  72000
+           2        |  45  |  78000
+           2        |  50  |  85000
+      ('education_level' column is storing 
+       ordinal categorical variables)
+
+
+
+Why does the Label Encoding Machine Learning (ML) Encoding Technique not work for nominal categorical variables?
+Lets say we have a dataset (a table of data) of 'housing prices' and 2 variables affecting the 'housing 
+prices', the 'house location' and 'house area' (refer to the 'house_prices_with_nominal_categorial_variables.csv'
+file):
+    house_location    |    area    |    price
+   monroe township    |    2600    |    550000
+   monroe township    |    3000    |    565000
+   monroe township    |    3200    |    610000
+   monroe township    |    3600    |    680000
+   monroe township    |    4000    |    725000
+     robinsville      |    2600    |    575000
+     robinsville      |    2900    |    600000
+     robinsville      |    3100    |    620000
+     robinsville      |    3600    |    695000
+     west windsor     |    2600    |    585000
+     west windsor     |    2800    |    615000
+     west windsor     |    3300    |    650000
+     west windsor     |    3600    |    710000
+        ('house_location' column is storing 
+         nominal categorical variables)
+
+As the Label Encoding ML Encoding Technique is preferably used for ordinal category variables (e.g. Education 
+level: graduate or masters or PHD), rather than nominal category variables (e.g. Location: monroe township or 
+robinsville or west windsor), if you attempt to assign the nominal categorical variables storing the categorical 
+data, as numerical values like so:
+    house_location  | area | price
+          1         | 2600 | 550000
+          1         | 3000 | 565000
+          1         | 3200 | 610000
+          1         | 3600 | 680000
+          1         | 4000 | 725000
+          2         | 2600 | 585000
+          2         | 2800 | 615000
+          2         | 3300 | 650000
+          2         | 3600 | 710000
+          3         | 2600 | 575000
+          3         | 2900 | 600000
+          3         | 3100 | 620000
+          3         | 3600 | 695000
+    ('house_location' column is storing 
+      nominal categorical variables)
+
+where:
+  "monroe township" might be assigned the numerical value label of 0.
+  "west windsor" might be assigned the numerical value label of 1.
+  "robinsville" might be assigned the numerical value label of 2.
+
+When you provide the ML algorithm/model with this dataset, the ML algorithm/model might assume that 
+there may be some sort of order to the nominal categorical variables (e.g. robinsville > west windsor > monroe 
+township ??) when there actually isn't any order for nominal categorical variables.
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+How does the One-hot Encoding (OHE) Machine Learning (ML) Encoding Technique work in a context:
+Lets say we have a dataset (a table of data) of 'housing prices' and 2 variables affecting the 'housing 
+prices', the 'house location' and 'house area' (refer to the 'house_prices_with_nominal_categorial_variables.csv'
+file):
+    house_location    |    area    |    price
+   monroe township    |    2600    |    550000
+   monroe township    |    3000    |    565000
+   monroe township    |    3200    |    610000
+   monroe township    |    3600    |    680000
+   monroe township    |    4000    |    725000
+     robinsville      |    2600    |    575000
+     robinsville      |    2900    |    600000
+     robinsville      |    3100    |    620000
+     robinsville      |    3600    |    695000
+     west windsor     |    2600    |    585000
+     west windsor     |    2800    |    615000
+     west windsor     |    3300    |    650000
+     west windsor     |    3600    |    710000
+        ('house_location' column is storing 
+         nominal categorical variables)
+
+As the One-hot Encoding (OHE) ML Encoding Technique is preferably used for nominal category variables (e.g. 
+Location: monroe township or robinsville or west windsor), what it does to handle the 'house_location' column, 
+which is storing the nominal categorical variables, is, that it assigns the nominal categorical variables 
+storing the categorical data, as binary vectors, which does not preserve any existing order between the nominal 
+categorical variables.
+
+In this context, the One-hot Encoding (OHE) ML Encoding Technique will create new vectors/columns, each for
+every category variable in the 'house_location' column, storing only binary values, 0 or 1, with 1 representing
+that the house is from that particular location and 0 representing that the house is not from that particular 
+location like so:
+    house_location     area   price     monroe township   robinsville   west windsor
+    monroe township  | 2600 | 550000 |               1 |            0 |            0
+    monroe township  | 3000 | 565000 |               1 |            0 |            0
+    monroe township  | 3200 | 610000 |               1 |            0 |            0
+    monroe township  | 3600 | 680000 |               1 |            0 |            0
+    monroe township  | 4000 | 725000 |               1 |            0 |            0
+     robinsville     | 2600 | 575000 |               0 |            1 |            0
+     robinsville     | 2900 | 600000 |               0 |            1 |            0
+     robinsville     | 3100 | 620000 |               0 |            1 |            0
+     robinsville     | 3600 | 695000 |               0 |            1 |            0
+     west windsor    | 2600 | 585000 |               0 |            0 |            1
+     west windsor    | 2800 | 615000 |               0 |            0 |            1
+     west windsor    | 3300 | 650000 |               0 |            0 |            1
+     west windsor    | 3600 | 710000 |               0 |            0 |            1
+                          ('house_location' column is storing 
+                           nominal categorical variables)
+
+
+
+Why does the One-hot Encoding (OHE) Machine Learning (ML) Encoding Technique not work for ordinal categorical variables?
+Lets say we have a dataset (a table of data) of 'salary' and 2 variables affecting the 'salary', the 'age' and 
+'education_level':
+        education_level  | age | salary
+            graduate     | 25  | 55000
+            graduate     | 28  | 58000
+            graduate     | 32  | 60000
+            graduate     | 35  | 63000
+            graduate     | 40  | 67000
+            master's     | 27  | 61000
+            master's     | 30  | 64000
+            master's     | 34  | 68000
+            master's     | 37  | 71000
+            master's     | 41  | 75000
+              PhD        | 29  | 65000
+              PhD        | 33  | 69000
+              PhD        | 38  | 72000
+              PhD        | 45  | 78000
+              PhD        | 50  | 85000
+        ('education_level' column is storing 
+         ordinal categorical variables)
+
+As the OHE ML Encoding Technique is preferably used for nominal category variables (e.g. 
+Location: monroe township or robinsville or west windsor), rather than nominal category variables (e.g. Education 
+level: graduate or masters or PHD), if you attempt to assign the ordinal categorical variables storing the categorical 
+data, as binary vectors like so:
+education_level  | age | salary | graduate | master's |  PhD
+     graduate    | 25  | 55000  |        1 |        0 |     0
+     graduate    | 28  | 58000  |        1 |        0 |     0
+     graduate    | 32  | 60000  |        1 |        0 |     0
+     graduate    | 35  | 63000  |        1 |        0 |     0
+     graduate    | 40  | 67000  |        1 |        0 |     0
+     master's    | 27  | 61000  |        0 |        1 |     0
+     master's    | 30  | 64000  |        0 |        1 |     0
+     master's    | 34  | 68000  |        0 |        1 |     0
+     master's    | 37  | 71000  |        0 |        1 |     0
+     master's    | 41  | 75000  |        0 |        1 |     0
+        PhD      | 29  | 65000  |        0 |        0 |     1
+        PhD      | 33  | 69000  |        0 |        0 |     1
+        PhD      | 38  | 72000  |        0 |        0 |     1
+        PhD      | 45  | 78000  |        0 |        0 |     1
+        PhD      | 50  | 85000  |        0 |        0 |     1
+              ('education_level' column is storing 
+               ordinal categorical variables)
+
+When you provide the ML algorithm/model with this dataset, the ML algorithm/model will not be able
+to detect the initial ordering between the ordinal category vaiables (e.g. graduate = master's
+= PhD ??) when there is actually supposed to be an order for the ordinal categorical 
+variables (graduate < master's < PhD).
