@@ -1,0 +1,88 @@
+What is Multiple Variable Linear Regression (MVLR)?
+MVLR is a type of Supervised learning Regression Machine Learning (ML) algorithm that computes the linear relationship 
+between a dependent variable and more than one independent variables/features.
+
+Note: In the topic of Machine Learning, independent variables are also commonly called 'features'. 
+
+
+///////////////////////////////////////////////////////////////////////////////////
+
+
+How does the Multiple Variable Linear Regression (MVLR) Machine Learning (ML) algorithm work?
+The MVLR ML algorithm can be essentially represented by the mathematical equation:
+        y = m1*x1 + m2*x2 + m3*x3 + ... + m?*x? + b
+
+(Note: The '...' represents that there can any number of independent variables/features in the MVLR ML algorithm)
+
+where,
+- 'y' is the dependent variable
+- 'x1', 'x2', 'x3' and 'x?' are the independent variables/features
+- 'm1', 'm2', 'm3' and 'm?' are the gradients/coefficients of the independent variables/features 'x1', 'x2', 'x3' and 'x?' 
+  respectively
+- 'b' is the intercept (Note: For the MVLR ML algorithm, 'b' does not represent the y-intercept! I will not explain why 
+  and what exactly it is here, but to simplify things, just know that it is basically just a 'constant term')
+
+
+///////////////////////////////////////////////////////////////////////////////////
+
+
+Trouble of representing the Multiple Variable Linear Regression (MVLR) ML algorithm graphically compared to the 
+Single Variable Linear Regression (SVLR) ML algorithm:
+Fundamentally, the MVLR ML algorithm works exactly the same way as the SVLR ML algorithm (see the 
+'1. What_is_Linear_Regression_and_Single_Variable_Linear_Regression.txt' file in the 'Tutorial 2 - Linear Regression and 
+Single Variable Linear Regression (Regression Supervised Learning Machine Learning Algorithm)' folder), in the sense that 
+they are both essentially the best fit line through the data (points) in a scatter graph with minimal error (Mean Square 
+Error) between the best fit line and all the data (points) in the scatter graph. 
+
+The mathematical equation that represents the SVLR ML algorithm is 'y = mx + c', hence we can show the best fit line (the 
+SVLR ML algorithm itself) in a 2D graph. However, the mathematical equation that represents the MVLR ML algorithm is 
+'y = m1*x1 + m2*x2 + m3*x3 + ... + m?*x? + b', hence the best fit line (the MVLR ML algorithm itself) is difficult to show 
+as it will require a higher dimension graph (e.g. 3D, 4D...), with the number of dimensions depending on the number of 
+independent variables/features involved in the MVLR ML algorithm. You can also to think of it as the data (points) that the 
+best fit line (the MVLR ML algorithm itself) will also be in a higher dimensional graph, because there is more than just 
+'y' and 'x1' coordinates, but 'x2', 'x3', ... 'x?' and so on for each data (point), resulting in the best fit line (the 
+MVLR ML algorithm itself) through these higher dimensional data (points) to also be in a higher dimensional graph.
+
+Regardless, we can still show how the MVLR ML algorithm works using its mathematical equation, 
+'y = m1*x1 + m2*x2 + m3*x3 + ... + m?*x? + b'.
+
+
+///////////////////////////////////////////////////////////////////////////////////
+
+
+How does the Multiple Variable Linear Regression (MVLR) ML algorithm work in a context:
+Lets say we have a dataset (a table of data) of 'housing prices' and 3 (multiple) variables affecting the 'housing 
+prices', the 'house area', 'number of bedrooms' and 'house age'. (We cannot plot the best fit line for visualisation,
+which represents the MVLR ML algorithm itself as explained in the above section 'Trouble of representing the MVLR ML 
+algorithm graphically compared to the SVLR ML algorithm')
+
+The mathematical equation for the MVLR ML algorithm in this context, aka the Machine 
+Learning (ML) model for this context, is:
+        price = m1*area + m2*bedroom + m3*age + b
+
+where,
+- 'price' ('y') is the dependent variable
+- 'area' ('x1'), 'bedroom' ('x2') and 'age' ('x3') are the independent variables/features
+- 'm1', 'm2' and 'm3' are the gradient/coefficient of the independent variables/features 'area' ('x1'), 'bedroom' 
+  ('x2') and 'age' ('x3') respectively
+- 'b' is the intercept (Note: For the MVLR ML algorithm, 'b' does not represent the y-intercept! I will not explain why 
+  and what exactly it is here, but to simplify things, just know that it is basically just a 'constant term')
+
+The mathematical equation, 'y = m1*x1 + m2*x2 + m3*x3 + ... + m?*x? + b', basically represents the MVLR ML algorithm, while 
+the mathematical equation, 'price = m1*area + m2*bedroom + m3*age + b', basically represents this context's MVLR ML 
+algorithm.
+
+
+///////////////////////////////////////////////////////////////////////////////////
+
+
+So, how is the Multiple Variable Linear Regression (MVLR) a Machine Learning (ML) algorithm in this context?
+The MVLR is a ML algorithm because its algorithm allows it to make predictions. 
+
+(We cannot plot the best fit line for visualisation, which represents the MVLR ML algorithm itself as explained in the 
+above section 'Trouble of representing the MVLR ML algorithm graphically compared to the SVLR ML algorithm')
+
+You can think of it as substituting the value of the 'house area', 'number of bedrooms' and 'house age' independent 
+variables/features into the mathematical equation for the MVLR ML algorithm in this context, aka the MVLR ML model 
+for this context, 'price = m1*area + m2*bedroom + m3*age + b', to find the predicted 'housing price' dependent 
+variable.
