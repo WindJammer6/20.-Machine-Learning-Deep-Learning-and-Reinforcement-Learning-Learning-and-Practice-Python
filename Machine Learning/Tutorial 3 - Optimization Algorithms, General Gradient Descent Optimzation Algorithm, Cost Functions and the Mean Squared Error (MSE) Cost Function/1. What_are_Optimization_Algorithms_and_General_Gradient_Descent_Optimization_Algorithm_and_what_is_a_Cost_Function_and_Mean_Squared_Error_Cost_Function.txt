@@ -1,0 +1,576 @@
+Recall back in our 3. Single_Variable_Linear_Regression_model_using_scikit-learn_LinearRegression_class.py' 
+file in the 'Tutorial 2 - Linear Regression and Single Variable Linear Regression (Regression Supervised 
+Learning Machine Learning Algorithm)' folder and the '3. Multiple_Variable_Linear_Regression_model.py' file 
+in the 'Tutorial 2.1 - Multiple Variable Linear Regression (Supervised Regression Machine Learning Algorithm)' 
+folder, where we trained the Single Variable Linear Regression (SVLR) and Multiple Variable Linear Regression 
+(MVLR) ML algorithms using the '.fit()' Scikit-learn function.
+
+But what exactly is the Optimization Algorithm behind this '.fit()' Scikit-learn function, and how is it 
+able to 'train' ML algorithms to become ML models, which are capable of predicting outcomes and classifying 
+information without human intervention?
+
+In this tutorial, we will introduce one of the most common such Optimization Algorithm (see the section
+below 'What are Optimization Algorithms?'), 
+
+      The (general)* Gradient Descent Optimization Algorithm 
+    
+and, with the help of a type of Cost Function (see the section below 'What is the Cost Function?'),
+
+      The Mean Squared Error (MSE) Cost Function
+    
+these concepts are able to 'train' ML algorithms to become ML models, which are capable of predicting 
+outcomes and classifying information without human intervention.
+
+(* '(general)' because in this tutorial we will only be learning about the general Gradient Descent 
+   Optimization Algorithm, but note that there are many variations of the general Gradient Descent 
+   Optimization Algorithm that exists (see the 'Types of Optimization Algorithms' section below))
+
+
+(Note: 
+- These algorithms that can 'train' a ML algorithm are called 'optimization' algorithms because what they
+  do is that they are trying to optimize/minimize the value of the Cost Function (see definition in the 
+  below section), which the process of reaching 'optimization' is what drives the learning process of the 
+  ML model to be more suited for its task.
+
+- There are various types of such Optimization Algorithms that can 'train' a ML algorithm, apart from the
+  Gradient Descent Optimization Algorithm (see more various types of Optimization Algorithms in the below
+  section). For example: 
+  -> Stochastic Gradient Descent (SGD) (variant of the (general) Gradient Descent Optimization Algorithm)
+  -> Mini-Batch Gradient Descent (variant of the (general) Gradient Descent Optimization Algorithm)
+  -> Momentum
+  -> Adaptive Moment Estimation (Adam)
+  -> Limited-memory Broyden-Fletcher-Goldfarb-Shanno (LBFGS)
+  -> etc.
+
+- The '.fit()' Scikit-learn function that 'trains' a ML algorithm actually employs a diverse range of 
+  Optimization Algorithms, depending on the ML algorithm it is training. For example: 
+  -> Stochastic Gradient Descent (SGD) (variant of the (general) Gradient Descent Optimization Algorithm) 
+     for the Linear Regression ML algorithms (SVLR and MVLR)
+  -> Adaptive Moment Estimation (Adam) or the Limited-memory Broyden-Fletcher-Goldfarb-Shanno (L-BFGS) 
+     for the Logistic Regression ML algorithm
+
+- In this tutorial we will be learning to implement this (general) Gradient Descent optimization algorithm
+  together with the Mean Squared Error (MSE) Cost Function, in the context of the SVLR ML algorithm. But 
+  in future tutorials we will not be reimplementing all these (general) Gradient Descent optimization 
+  algorithm together with the Mean Squared Error (MSE) Cost Function, for other ML algorithms as the 
+  Scikit-learn library's '.fit()' function can already do this for us. In this tutorial we are 
+  reimplementing this (general) Gradient Descent optimization algorithm together with the Mean Squared 
+  Error (MSE) Cost Function, in the context of the SVLR ML algorithm, as an excercise, to help us better 
+  understand the inner workings of the Scikit-learn library's '.fit()' function, and understand Machine
+  Learning (ML) algorithms and the Scikit-learn library as a whole much better
+)
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+
+
+What are Optimization Algorithms?
+Optimization Algorithms are algorithms that are used to optimize/minimise the value of the Cost 
+Function (see the section below 'What is the Cost Function?'). It does so by finding a set of parameters 
+(not the dependent variable nor the independent variables/features, but the weights and biases) for a ML 
+algorithm/model that optimizes/minimises the value of the Cost Function.
+
+
+What are Weights and Biases?
+- Weights are coefficients assigned to the independent variables/features (input) in a mathematical equation
+  of a ML algorithm.
+- Biases are the additional terms in the mathematical equation of a ML algorithm.
+
+For example, using the mathematical equation representing the Single Variable Linear Regression (SVLR) ML
+algorithm, y = mx + b, where 'y' is the dependent variable (output) while 'x' is the independent 
+variable/feature (input),
+-> Weight(s) will be the 'm' variable
+-> Bias(es) will be the 'b' variable
+
+
+What are the different types of Optimization Algorithms:
+
+(Note: In this tutorial I am not going in-depth to explain every single type of Optimization Algorithm as 
+       the focus of this tutorial is about the (general) Gradient Descent algorithm and the Mean Squared Error 
+       (MSE) Optimization Algorithm only)
+
+First-order Optimization Algorithms:
+   1. Gradient Descent Algorithms (Here is a tree-diagram of how the (general) Gradient Descent is related
+      to each of its variations)
+                           (general) Gradient Descent (taught in this tutorial)
+                   ______________________________|__________________________________
+                  |                       |                                         |
+                Batch               Stochastic                                      |
+           Gradient Descent     Gradient Descent (SGD)                              |
+                  |                  _____|_________________                        |
+                  |                 |                       |                       |
+               Mini-Batch         Nesterov                Momentum                Adagrad
+           Gradient Descent Accelerated Gradient (NAG)                              |
+                                    |                                               |
+                                    |                             __________________|________________
+                                    |                            |                  |                |
+                                    |                      Root Mean Square      Adadelta       Adaptive Moment
+                                    |                   Propogration (RMSprop)                  Estimation (Adam)
+                                    |                                                                |
+                                    |                                                                |
+                                    |________________________________________________________________|
+                                                                  |
+                                                         Nesterov-accelerated 
+                                                   Adaptive Moment Estimation (Nadam)
+   2. Evolutionary Optimization Algorithms
+      - Genetic Algorithms (GA)
+      - Differntial Evolution (DE)
+
+   3. Swarm Intelligence Algorithms
+      - Particle Swarm Optimization (PSO)
+      - Ant Colony Optimization (ACO)
+
+   4. Stochastic Optimization Algorithms
+      - Simulated Annealing
+      - Random Search
+
+Second-order Optimization Algorithms:
+   1. Newton's Method
+   
+   2. Quasi-Newton Methods
+      - Broyden-Fletcher-Goldfarb-Shanno (BFGS)
+        -> Limited-memory Broyden-Fletcher-Goldfarb-Shanno (LBFGS)
+
+   3. Constrained Optimization Algorithms
+      -> Constrained Optimization By Linear Approximations (COBYLA)
+
+   4. Bayesian Optimization Algorithms
+
+
+Source: https://medium.com/analytics-vidhya/optimization-algorithms-in-machine-learning-6493c7badb6e (Medium) (for 
+        the tree-diagram of how the (general) Gradient Descent Optimization Algorithm is related to each of its 
+        variations)
+        https://www.geeksforgeeks.org/optimization-algorithms-in-machine-learning/ (GeekforGeeks) (for the list of
+        types of first-order and second-order Optimization Algorithms)
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+What is the relationship between Machine Learning (ML) algorithms and Optimization Algorithms?
+"ML algorithms refer to the list set of instructions (definition of an algorithm) that allows a machine to 
+learn from data and improve from experience, and be capable of predicting outcomes and classifying information 
+without human intervention." (from the '2. What_is_Machine_Learning_and_the_different_Machine_Learning_approaches_
+and_Machine_Learning_algorithms.txt' file in the 'Tutorial 1 - What is Machine Learning' folder)
+
+ML algorithms/models allows a machine to learn from data, but they do not train the machine to be able to learn 
+from data! These ML algorithms are trained (to become ML models) via another set of algorithms called Optimization
+Algorithms. 
+
+You can think of it as ML algorithms/models as the 'template'/'structure' that a machine uses for learning from 
+data, and Optimization Algorithms are the 'driving force' behind the training of these ML algorithms. 
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+What is the Cost Function?
+The Cost Function is a mathematical function that measures how wrong a Machine Learning (ML) model is, when 
+it is finding a relationship between the dependent variable/predicted values by a ML model (output), and 
+the independent variables/features/actual values used to train the ML model (input).
+
+
+What is the difference between the Cost Function and Loss/Error Function?
+The terms 'Cost' Function and 'Loss/Error' Function are used interchangably, but both terms do have their distinct
+differences. 
+
+- The Loss/Error Function, quantifies the difference between a single actual data point value and a single 
+  prediction/data point value of the Machine Learning (ML) model. 
+- The Cost Function, quantifies the ML model's overall performance using the average of the Loss/Error Functions of an 
+  entire dataset, containing multiple actual data point values, with the multiple prediction/data point values of the 
+  Machine Learning (ML) model.
+
+However, in this tutorial, we will be using the the term 'Cost' function as it is more relevant for the context.
+
+
+
+What are the different types of Cost Functions?
+The type of Cost Function depends on the nature/type of the Machine Learning (ML) problem that it is solving.
+
+(Note: In this tutorial I am not going in-depth to explain every single type of Cost Function as the focus of this
+       tutorial is about the (general) Gradient Descent algorithm and the Mean Squared Error (MSE) Cost Function
+       only)
+
+
+Generally, the 2 most common different natures/types of ML problems are:
+1. Regression problem                    : involves predicting a continuous output variable (numeric value) based 
+                                           on input independent variables/features
+2. Classification problem                : involves predicting a discrete label/category based on input independent
+                                           variable/features
+   a. Binary Classification problem      : involves predicting categorical variables and classifying them into 
+                                           1 out of 2 outcomes based on input independent variables/features
+   b. Multi-class Classification problem : involves predicting categorical variables and classifying them into 
+                                           1 out of more than 2 outcomes based on input independent 
+                                           variables/features
+
+
+Hence, the 2 most common different types of Cost Functions are:
+1. Regression Cost Functions
+2. Classification Cost Functions
+   a. Binary Classification Cost Functions
+   b. Multi-class Classification Cost Functions
+
+
+Types of common Cost Functions that solve each nature/type of ML problem:
+1. Regression Cost Functions
+   -> Mean Squre Error (MSE) 
+      (Formula: MSE = (1/n) * Σᵢ(yᵢ-ŷᵢ)²)
+   -> Mean Absolute Error (MAE) 
+      (Formula: MAE = (1/n) * Σ|yᵢ-ŷᵢ|)
+
+2. Classification Cost Functions
+   a. Binary Classification Cost Functions
+      -> Binary Logistic Loss/Binary Cross-Entropy 
+         (Formula: BinaryCrossEntropy = -(1/n) * Σ[yᵢ*log(ŷᵢ) + (1-yᵢ) * log(1-ŷᵢ)])
+      -> Hinge Loss 
+         (Formula: Hinge Loss = (1/n) * Σmax(0, 1-yᵢ*ŷᵢ))
+
+   b. Multi-class Classification Cost Functions
+      -> Multi-Class/Categorical Logistic Loss / Multi-Class/Categorical Cross-Entropy 
+         (Formula: MultiClassCrossEntropy = -(1/n) * ΣᵢΣⱼ[yᵢⱼ * log(ŷᵢⱼ)])
+      -> Sparse Multi-Class/Categorical Cross-Entropy
+         (Formula: SparseMultiClassCrossEntropy = -(1/n) * Σᵢlog(ŷᵢⱼ))
+      -> Kullback-Leibler Divergence (KL Divergence) 
+         (Formula: KLDivergence = ΣᵢΣⱼ[yᵢⱼ * log(yᵢⱼ/ŷᵢⱼ)])
+
+(yᵢ: represents actual data point value | ŷᵢ: represents prediction/data point value | n: represents the number
+ of data points)
+
+
+Note: - You might have heard about some of these types of Cost Functions being associated with a particular 
+        ML algorithm, such as:
+        -> Mean Square Error (MSE)/Mean Absolute Error (MAE) being associated with Single Variable Linear 
+           Regression (SVLR) and Multiple Variable Linear Regression (MVLR)
+        -> Binary Logistic Loss/Binary Cross-Entropy being associated with Binary Logistic Regression (BLR) 
+           ML algorithm 
+        -> Multi-Class/Categorical Logistic Loss / Multi-Class/Categorical Cross-Entropy or 
+           Sparse Multi-Class/Categorical Cross-Entropy being associated with Multinominal Logistic 
+           Regression (MLR) ML algorithm 
+        -> Hinge Loss being associated with Support Vector Machines (SVM) ML algorithm
+
+        These associations exist because of the compatible characteristics of the ML algorithm with
+        the mathematical property of the Cost Function (mathematical equation).
+
+
+Source: https://www.datacamp.com/tutorial/loss-function-in-machine-learning (datacamp) (for the difference 
+        between between the terms 'Cost Function' and 'Lost function')
+        https://machinelearningmastery.com/how-to-choose-loss-functions-when-training-deep-learning-neural-networks/ 
+        (Machine Learning Mastery) (for the Binary Classification Cost Functions and Multi-Class 
+        Classification Cost Functions)
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+What is the relationship between Machine Learning (ML) algorithms, Optimization Algorithms and the Cost Function?
+The relationship between ML algorithms, Cost Function and Gradient Descent is central to the TRAINING 
+PROCESS of a ML algorithm into a ML model. 
+
+Here is a general training workflow of a ML algorithm:
+1. ML algorithms start with an initial set of parameters
+
+2. Independent variables/features (input) data is fed through the ML algorithm, and obtain dependent 
+   variables/predictions (output)
+
+3. Calculate the Cost Function by comparing the independent variables/features (input) data and the dependent 
+   variable/predicted (output) data
+
+4. Running of the chosen type of Optimization Algorithm to modify the set of parameters (weights and biases) of 
+   the ML algorithm to reduce the value of Cost Function. Optimization Algorithm are usually run through many 
+   iterations, continuously modifying the set of parameters (weights and biases) of the ML algorithm to reduce 
+   the value of the Cost Function, until it finds the best set of parameters (weights and biases) of the ML
+   algorithm that minimises the Cost Function.
+
+5. ML algorithm is now trained, and is now a ML model! Evaluate the trained ML algorithm (ML model) on unseen 
+   data to assess its generalization performance
+
+
+The chosen combination of the type of ML algorithm, Optimization Algorithm and Cost Function is 
+flexible/interchangable! Even though in many contexts, the specific combination of the type of ML algorithm, 
+Optimization Algorithm and Cost Function, is the same due to their matching compatibility, it is important to 
+note that the combination of the type of ML algorithm, Optimization Algorithm and Cost Function is actually not
+fixed, and the combination choice can vary depends on the specific requirements of the ML problem/task.
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+(Prior notes:
+NOW THAT WE HAVE EXPLAINED WHAT AN OPTIMIZATION ALGORITHM AND COST FUNCTION IS...
+
+In this tutorial we will be learning about one of the most common combination of the type of ML algorithm, 
+Optimization Algorithm and Cost Function, which is the Single Variable Linear Regression Machine Learning 
+algorithm, the (general) Gradient Descent Optimization Algorithm, and the Mean Squared Error (MSE) Cost 
+Function, and how they work)
+
+
+What is the exact process behind this '.fit()' Scikit-learn function, and how is it able to 'train' ML 
+algorithms to become ML models, which are capable of predicting outcomes and classifying information 
+without human intervention? Explained in the context of the Single Variable Linear Regression (SVLR)
+ML algorithm, the (general) Gradient Descent Optimization Algorithm, and the Mean Squared Error (MSE) Cost 
+Function.
+
+From the '1. What_is_Linear_Regression_and_Single_Variable_Linear_Regression.txt' file in the 
+'Tutorial 2 - Linear Regression and Single Variable Linear Regression (Regression Supervised Learning Machine 
+Learning Algorithm)' folder,
+
+   ```
+      How does the Single Variable Linear Regression (SVLR) Machine Learning (ML) algorithm work?
+      The SVLR ML algorithm can be essentially represented by the mathematical equation:
+            y = mx + b
+
+      where,
+      - 'y' is the dependent variable
+      - 'x' is the independent variable/feature
+      - 'm' is the gradient/coefficient of the independent variable/feature 'x'
+      - 'b' is the y-intercept, 'constant term'
+
+
+      ///////////////////////////////////////////////////////////////////////////////////
+
+
+      How does the Single Variable Linear Regression (SVLR) ML algorithm work in a context:
+      Lets say we have a dataset (a table of data) of 'housing prices' and just one variable affecting the 'housing 
+      prices', the 'house area', and we plotted the data from this dataset in a scatter graph (as shown below), 
+      and drew a best fit line through the data (points) in the scatter graph with  error (Mean Square Error) 
+      between the best fit line and all the data (points) in the scatter graph. 
+
+         price ($1000)
+            ^
+          12|          /
+            |         /
+          10|        /
+            |      */
+            |      /
+            |     /  *
+          5 |  * /
+            |   /
+            |  /*
+            | /
+          0 |-------------> area (m^2)
+            0        4000
+
+      The mathematical equation for the SVLR ML algorithm in this context, aka the Machine Learning (ML) model for this 
+      context, is:
+            price = m * area + b
+
+      where,
+      - 'price' ('y') is the dependent variable
+      - 'area' ('x') is the independent variable/feature
+      - 'm' is the gradient/coefficient of 'area' ('x')
+      - 'b' is the y-intercept, 'constant term'
+
+      The mathematical equation, 'y = mx + b', basically represents the SVLR ML algorithm,
+      while the best fit line and the mathematical equation, 'price = m * area + b', basically represents this context's 
+      SVLR ML algorithm.
+   ```
+
+But a major question arises, 
+      
+      How does the SVLR algorithm know where the best fit line is, through the actual data points in the graph?
+
+Because by right, you can have multiple potential lines that passes through all the actual data points, 
+   y                                y                              y
+   ^                                ^                              ^
+   |          /                     |        /                     |          /
+   |         /                      |       /                      |         /
+   |        /                       |       |                      |         |
+   |      */                        |     */                       |     *  /
+   |      /                         |     /                        |       /
+   |     /  *             OR        |    /   *           OR        |      / * 
+   |  * /                           |  */                          |  *  /
+   |   /                            |  /                           |   --
+   |  /*                            |  |*                          |  /*
+   | /                              | /                            | /
+   |-------------> x                |-------------> x              |-------------> x
+   
+So here is when the (general) Gradient Descent Optimization Algorithm and the Mean Squared Error (MSE) Cost Function 
+helps the SVLR ML algorithm learn to find the best fit line. This process of finding the best fit line of the SVLR ML 
+algorithm using the (general) Gradient Descent Optimization Algorithm and the Mean Squared Error (MSE) Cost Function 
+to find the best fit line for the SVLR ML algorithm can also be thought as the process of 'training' the SVLR ML 
+algorithm to become a SVLR ML model, and is the mathematical process behind the '.fit()' Scikit-learn function!! 
+(in the context of the SVLR ML model, the (general) Gradient Descent Optimization Algorithm, and the Mean Squared 
+Error (MSE) Cost Function)
+
+
+
+Here's how the (general) Gradient Descent Optimization Algorithm and the Mean Squared Error (MSE) Cost Function 
+helps the SVLR ML algorithm learn to find the best fit line:
+
+The role of the Mean Squared Error (MSE) Cost Function in helping the SVLR ML algorithm learn to find the best fit 
+line:
+The Mean Squared Error (MSE) Cost Function tells you how close a line is to a set of points. It does this by 
+taking the distances from the points to the line (these distances are called the 'errors' in the context of MSE), 
+and squaring them. The squaring is necessary to remove any negative signs. 
+
+The Mean Squared Error (MSE) Cost Function has the following mathematical formula/equation: 
+      MSE = (1/n) * Σᵢ(yᵢ - ŷᵢ)²       OR       MSE = (1/n) * Σᵢ(yᵢ - (mxᵢ + b))²
+         
+- yᵢ: represents actual data point value
+- ŷᵢ = (mxᵢ + b): represents prediction/data point value 
+- xᵢ: represents the input / independent variable/feature that corresponds to the prediction/data point value
+- n: represents the number of data points
+
+By definition, the smaller the value of the Mean Squared Error (MSE) Cost Function of a line, the closer a line 
+will be to becoming the 'best fit line' of a set of points. Hence, the line with the smallest possible value of 
+the Mean Squared Error (MSE) Cost Function represents the 'best fit line' itself of a set of points.  
+
+
+
+The role of the (general) Gradient Descent Optimization Algorithm in helping the SVLR ML algorithm learn to find the 
+best fit line:
+Since the position of a line/the SVLR ML algorithm (with the mathematical equation, 'y = mx + b') is determined by 
+the 'm' (the gradient/coefficient of the independent variable/feature 'x') and 'b' (the y-intercept, 'constant term')
+variables, which also happens to be the weights and biases respectively (see the section 'Weights and Biases?').
+
+Recalling the definition of Optimization Algorithms like the (general) Gradient Descent Optimization
+Algorithm, 'Optimization Algorithms are algorithms that are used to optimize/minimise the value of the Cost 
+Function. It does so by finding a set of parameters (not the dependent variable nor the independent 
+variables/features, but the weights and biases) for a ML algorithm/model that optimizes/minimises the value of the 
+Cost Function.' (see the section 'What are Optimization Algorithms?')
+
+In the context of the SVLR ML algorithm and the Mean Squared Error (MSE) Cost Function, the (general) Gradient Descent 
+Optimization Algorithm's role is to help to find the set of values of the weights ('m') and biases ('b') (from the 
+mathematical equation, 'y = mx + b' of a line/the SVLR ML algorithm) that minimises the value of the Mean Squared 
+Error (MSE) Cost Function.
+
+
+
+How does the (general) Gradient Descent Optimization Algorithm work to find the set of values of the weights ('m') and 
+biases ('b') that minimises the value of the Mean Squared Error (MSE) Cost Function?
+A brute-force way/algorithm to find the set of values of the weights ('m') and biases ('b') that minimises the value 
+of the Mean Squared Error (MSE) Cost Function is to just randomly try every combination of the values of the weights 
+('m') and biases ('b') (which determines the position of a line/the SVLR ML algorithm (with the mathematical equation, 
+'y = mx + b')).
+
+However, this algorithm will take a very very large amount of iterations before it will arrive at the set of values of 
+the weights ('m') and biases ('b') that minimises the value of the Mean Squared Error (MSE) Cost Function. Hence, what 
+the (general) Gradient Descent Optimization Algorithm allow is that it allows us to arrive at the set of values of 
+the weights ('m') and biases ('b') that minimises the value of the Mean Squared Error (MSE) Cost Function with much
+fewer iterations.
+
+Here are the steps of the (general) Gradient Descent Optimization Algorithm:
+1. Imagine a 3D space, with,
+   - the x-axis representing the range of values of weights ('m')
+   - the y-axis representing the range of values of biases ('b')
+   - the z-axis representing the range of values of the Cost Function (Mean Squared Error (MSE) Cost Function in 
+      this context)
+
+   And a plane with a rough shape of a 'bowl' (but not exactly the symmtrical shape of a 'bowl')
+
+   This plane represents the plot of all possible values of the Cost Function (MSE Cost Function in this context) for
+   every combination of the set of values of the weights ('m') and biases ('b') of the line/the SVLR ML algorithm (with 
+   the mathematical equation, 'y = mx + b'), which in turns represents all the possible positions of the line/the SVLR 
+   ML algorithm through a set of points.
+
+   (Note: Its very hard to draw this 'bowl' shaped plane in the 3D space in text. Refer to this codebasics Youtube 
+   video, titled 'Machine Learning Tutorial Python - 4: Gradient Descent and Cost Function' 
+   (link: https://www.youtube.com/watch?v=vsWrXfO3wWw&list=PLeo1K3hjS3uvCeTYTeyfe0-rN5r8zn9rw&index=7), at 
+   timestamp 5:20 for the visualisation of this 'bowl' shaped plane in the 3D space)
+
+
+2. Select a random set of values of the weights ('m') and biases ('b') on the 'bowl' shaped plane in this 3D space. This
+   translates to selecting a random position of the the line/the SVLR ML algorithm through the set of points.
+
+
+3. Then, we will move the values of the weights ('m') and biases ('b') by a 'step' (which means modify the selected 
+   value of the weights ('m') and biases ('b') by a certain amount) towards the minima (in mathematical terms: This
+   refers to lowest point/value of a graph) of the 'bowl' shaped plane in this 3D space.
+   
+   But how exactly do we determine the certain amount of this 'step'? 
+   A brute-force way is to use fixed 'steps' to move the values of the weights ('m') and biases ('b') towards the 
+   minima (in mathematical terms: This refers to lowest point/value of a graph) of the 'bowl' shaped plane in this 3D 
+   space, like so:
+
+   (Note: Its very hard to draw this visualisation in text. Refer to this codebasics Youtube 
+   video, titled 'Machine Learning Tutorial Python - 4: Gradient Descent and Cost Function' 
+   (link: https://www.youtube.com/watch?v=vsWrXfO3wWw&list=PLeo1K3hjS3uvCeTYTeyfe0-rN5r8zn9rw&index=7), at 
+   timestamp 8:45 for the visualisation)
+
+   However, this way has a risk of missing the minima (in mathematical terms: This refers to lowest point/value of a 
+   graph) of the 'bowl' shaped plane in this 3D space, as illustrated in the visualisation above.
+
+
+   So this step of the (general) Gradient Descent Optimization Algorithm uses a way that will work better, and will 
+   not have the problem of potentially missing the but the minima (in mathematical terms: This refers to lowest 
+   point/value of a graph) of the 'bowl' shaped plane in this 3D space explanation is a little mathematical as it 
+   involves derivatives (in mathematical terms: This refers to the rate of change of a function with respect to a 
+   variable).
+
+   The way that the (general) Gradient Descent Optimization Algorithm uses is represented by the following visualisation
+   like so:
+
+   (Note: Its very hard to draw this visualisation in text. Refer to this codebasics Youtube 
+   video, titled 'Machine Learning Tutorial Python - 4: Gradient Descent and Cost Function' 
+   (link: https://www.youtube.com/watch?v=vsWrXfO3wWw&list=PLeo1K3hjS3uvCeTYTeyfe0-rN5r8zn9rw&index=7), at 
+   timestamp 9:11 for the visualisation)  
+   
+   Notice that each 'step' follows the gradient/curvature of the 'bowl' shaped plane in this 3D space that represents 
+   all possible values of the Cost Function (MSE Cost Function in this context) for every combination of the set of 
+   values of the weights ('m') and biases ('b') of the line/the SVLR ML algorithm (with the mathematical equation, 
+   'y = mx + b'). Each 'step' follows the gradient/curvature, in the sense that, the 'step' size is initially large,
+   but gradually the 'step' size gets smaller and smaller as the values of the weights ('m') and biases ('b') move 
+   closer and closer towards the minima (in mathematical terms: This refers to lowest point/value of a graph).
+   
+   To calculate exactly how much to reduce the 'step' size mathematically, we need to calculate the value of the 
+   gradient at the point on the 'bowl' shaped plane in this 3D space that represents all possible values of the 
+   Cost Function (MSE Cost Function in this context) for every combination of the set of values of the weights ('m') 
+   and biases ('b') of the line/the SVLR ML algorithm (with the mathematical equation, 'y = mx + b'), after every 
+   'step', and make use of derivatives and partial derivatives.
+
+   I will not go into the deriving process of the maths of the derivatives and partial derivatives that allow us to
+   exactly determine the certain amount of every 'step' in each iteration, but here are the mathematical formulas:
+         From the Cost Function (Mean Squared Error (MSE) Cost Function in this context)'s mathemactical 
+         formula/equation, 
+            MSE = (1/n) * Σᵢ(yᵢ - (mx + b))²
+
+         Find the partial derivatives with respect to the variable 'm' (weights) and 'b' (biases) respectively,
+            dMSE/dm = -(2/n) * Σᵢxᵢ(yᵢ - (mxᵢ + b))
+            dMSE/db = -(2/n) * Σᵢ(yᵢ - (mxᵢ + b))
+
+         - yᵢ: represents actual data point value
+         - ŷᵢ = (mxᵢ + b): represents prediction/data point value 
+         - xᵢ: represents the input / independent variable/feature that corresponds to the prediction/data point value
+         - n: represents the number of data points
+
+         Hence, the exact certain amount of every 'step' in each iteration is represented by the formulas:
+            m' = m - (learning rate * dMSE/dm)      (for the weights, 'm')
+            b' = b - (learning rate * dMSE/db)      (for the biases, 'b')
+         
+         - m': represents the value of the weight ('m') of the line//the SVLR ML algorithm of the next iteration
+         - m: represents the value of the weight ('m') of the line//the SVLR ML algorithm of the current iteration
+         - b': represents the value of the biases ('b') of the line//the SVLR ML algorithm of the next iteration
+         - b: represents the value of the biases ('b') of the line//the SVLR ML algorithm of the current iteration
+         - (learning rate * dMSE/dm) and (learning rate * dMSE/db): represents the exact certain amount of every
+                                                                    'step' in each iteration 
+         - learning rate: represents a constant that controls how much the line/the SVLR ML algorithm's weights ('m')
+                          and biases ('b') are adjusted/'step' is moved during every iteration (we will look more 
+                          into this term and what exactly it does in code in the later files in this tutorial). 
+                          Generally, a larger learning rate value will mean a larger adjustment/'step' in each
+                          iteration, and likewise for a smaller learning rate value will mean a smaller 
+                          adjustment/'step' in each iteration.
+
+
+4. Once you have reached this minima (in mathematical terms: This refers to lowest point/value of a graph) of the 'bowl' 
+   shaped plane in this 3D space. You have found the set of values of the weights ('m') and biases ('b') of the line/the 
+   SVLR ML algorithm with the minimial value of the Cost Function (MSE Cost Function in this context), since the z-axis
+   of this 3D space represents the range of values of the Cost Function (MSE Cost Function in this context)! 
+   
+   Hence, you have found the weights ('m') and biases ('b') of the 'best fit line' of the set of points since the  
+   value of the Cost Function (MSE Cost Function in this context) represents the 'best fit line' itself of a set of points! 
+
+
+(Note:
+- The (general) Gradient Descent optimization algorithm can only find local minimas. In order to find the global minima 
+  (the true 'best fit line' with the set of parameters (not the dependent variable nor the independent variables/features, 
+  but the weights and biases) for a ML algorithm/model with the  possible value of the Cost Function), we have
+  to implement more advanced techniques in order to do this. I will not be going into detail on what these techniques are
+  in this tutrial as they are a little too advanced.)
+
+
+Source(s): 
+https://www.statisticshowto.com/probability-and-statistics/statistics-definitions/mean-squared-error/ (Statistics How To) 
+(definition of Mean Squared Error (MSE))
+
+
+
