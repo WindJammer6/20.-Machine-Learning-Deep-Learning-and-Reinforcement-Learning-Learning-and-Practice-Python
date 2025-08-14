@@ -1,0 +1,235 @@
+What is the Multinomial Logistic Regression (MNLR)?
+MNLR is a type of Supervised learning Classification Machine Learning (ML) algorithm that computes the 
+relationship between more than 2/multiple nominal categorical dependent variable and one or more than 
+one independent variables/features.
+
+Note: Recall from the '1. What_are_Machine_Learning_Encoding_Techniques_and_what_is_the_One-hot_Encoding_
+Machine_Learning_Encoding_Technique_and_the_Label_Encoding_Machine_Learning_Encoding_Technique.txt' file 
+in the 'Tutorial 4 - Machine Learning Encoding Techniques, One-hot Encoding Machine Learning Encoding 
+Technique and Label Encoding Machine Learning Encoding Technique (Machine Learning Technique)' folder, 
+that nominal categorical variables represent categories with no intrinsic order or ranking among them. 
+(e.g. Gender: male or female, Color: green or red or blue, Location: monroe township or robinsville or 
+west windsor)
+
+
+///////////////////////////////////////////////////////////////////////////////////
+
+
+How does the Multinomial Logistic Regression (MNLR) Machine Learning (ML) algorithm work?
+The MNLR ML algorithm can be essentially represented by the mathematical equation:
+        softmax(𝑧𝑖) = 𝑒^𝑧𝑖 / 𝐾∑𝑗=1 𝑒^𝑧𝑗
+    OR  softmax(𝑧𝑖) = 𝑒^𝑧𝑖 / (𝑒^𝑧1 + 𝑒^𝑧2 + ... + 𝑒^𝑧k)
+
+where,
+- for 𝑖 = 1, 2, … , 𝐾
+- '𝑧i' = m(zi, 1) * x1 + m(zi, 2) * x2 + m(zi, 3) * x3 + ... + m(zi, ?) * x? + bi, and corresponds to a 
+  particular nominal category i which is a function of the independent variables/features, the 
+  weights/gradients/coefficients, and bias/intercept specific to that nominal category
+
+  (Note: The '...' here represents that there can any number of independent variables/features in the 
+  MNLR ML algorithm)
+
+  where,
+  - 'x1', 'x2', 'x3' and 'x?' are the independent variables/features
+  - 'm(zi, 1)', 'm(zi, 2)', 'm(zi, 3)' and 'm(zi, ?)' are the weights/gradients/coefficients of the 
+    independent variables/features 'x1', 'x2', 'x3' and 'x?' respectively
+
+    where,
+    - 'zi' indicates the particular nominal category i that the 'm(zi, 1)' weight/gradient/coefficient
+      belongs to
+    - '1', '2', '3', '?' indicates the order of the weight/gradient/coefficient in the particular nominal
+      category 'zi' function (or you can think of it as the index of the independent variable/feature to 
+      which the weight/gradient/coefficient is attached to)
+
+    - 'bi' is the bias/intercept (Note: For the MNLR ML algorithm, 'bi' does not represent the y-intercept! I 
+      will not explain why and what exactly it is here, but to simplify things, just know that it is basically 
+      just a 'constant term'), for the particular nominal category 'zi' function
+
+  (Note: The '...' in '𝑒^𝑧1 + 𝑒^𝑧2 + ... + 𝑒^𝑧k' represents that there can any number of nominal categories 
+  of the nominal categorical dependent variable in the MNLR ML algorithm)
+
+
+- 'softmax()', the softmax function, is 𝑒^𝑧𝑖 / (𝑒^𝑧1 + 𝑒^𝑧2 + ... + 𝑒^𝑧k), for 𝑖 = 1, 2, … , 𝐾, which is a 
+  function that maps any real number of zi to a value between 0 and 1 (it is able to do this because for any 
+  value of e^zi, the denominator will always be at least equal or larger than the nominator)
+- 'softmax(zi)' is the mapped value between 0 and 1 after any real number of zi is passed through the 'softmax()', 
+  the softmax function
+- '𝑒' is the Euler's number ~ 2.71828
+
+
+
+But the mathematical equation does not represent the full MNLR ML algorithm! There is one extra step:
+The rationale for using the softmax function to mapping any real number of zi to a value between 0 and 1 is so that
+the real-number-of-z-now-a-value-between-0-and-1, 'softmax(zi)', can be interpreted as a probability! And also by 
+using the softmax function to map any real number of zi for all 𝑖 = 1, 2, … , 𝐾, to a value between 0 and 1, the
+softmax function normalises (aka adjusting all the real-number-of-z-now-a-value-between-0-and-1, 'softmax(zi)',
+probability to the same scale, where the sum of all the real-number-of-z-now-a-value-between-0-and-1, 'softmax(zi)',
+probabilities is equal to 1)
+
+This process (of mapping any real number of zi to a value between 0 and 1 real-number-of-z-now-a-value-between-0-and-1, 
+'softmax(zi)', probability) repeats to find all the different real-number-of-z-now-a-value-between-0-and-1, 'softmax(zi)',
+probabilities, for 𝑖 = 1, 2, … , 𝐾, and since 'y' is the (multiple nominal categorical) dependent variable, the particular 
+nominal category 'zi' function that has the largest 'softmax(zi)', probability for a set of values of the independent 
+variables/features for the MNLR ML algorithm will be interpreted as the (predicted) 'y' (multiple nominal categorical) 
+dependent variable value to be the category represented by that value of 𝑖.
+
+
+///////////////////////////////////////////////////////////////////////////////////
+
+
+The softmax function (which essentially represents the MNLR ML algorithm) is essentially a generalisation of the 
+sigmoid/logit function (which essentially represent BLR ML algorithm)! (conversely, this is true with the sigmoid/logit
+function essentially being a special case of the softmax function!)
+
+This can be proven using some simple mathematical manipulation, starting with the softmax function, for 2 nominal 
+categories, since in a binary classification problem, there are only two categories:
+1. Softmax function for 2 nominal categories:
+softmax(𝑧𝑖) = 𝑒^𝑧𝑖 / (𝑒^𝑧1 + 𝑒^𝑧2), for 𝑖 = 1, 2
+
+Applying the softmax function to each of the two categories:
+softmax(z1) = 𝑒^𝑧1 / (𝑒^𝑧1 + 𝑒^𝑧2), where i = 1
+softmax(z2) = 𝑒^𝑧2 / (𝑒^𝑧1 + 𝑒^𝑧2), where i = 2
+
+
+2. Mathematical manipulation to simplify the softmax function to the sigmoid/logit function:
+For the 'softmax(z1)' equation, subtract 𝑧2 from both 𝑧1 and 𝑧2 in the exponents, while for the 
+'softmax(z2)' equation, subtract 𝑧1 from both 𝑧1 and 𝑧2 in the exponents.
+
+Note that this doesn't change the real-number-of-z-now-a-value-between-0-and-1, 'softmax(zi)', 
+probabilities since it’s equivalent to normalizing (you can test this out on a calculator with test 
+values of z1 and z2 that the value of 'softmax(z1)' and 'softmax(z2)' will stay the same even after 
+doing this):
+softmax(z1) = 𝑒^𝑧1 / (𝑒^𝑧1 + 𝑒^𝑧2) = 𝑒^(𝑧1-z2) / (𝑒^(𝑧1-z2) + 𝑒^(𝑧2-z2)), where i = 1
+softmax(z2) = 𝑒^𝑧2 / (𝑒^𝑧1 + 𝑒^𝑧2) = 𝑒^(𝑧2-z1) / (𝑒^(𝑧1-z1) + 𝑒^(𝑧2-z1)), where i = 2
+
+Simplifying the 'softmax(z1)' and 'softmax(z1)' equations, letting z = z2-z1, 
+softmax(z1) = 𝑒^(𝑧1-z2) / (𝑒^(𝑧1-z2) + 𝑒^(𝑧2-z2)) = 𝑒^(-z) / (𝑒^(-z) + 1)
+                                                 = 1 / (𝑒^z + 1)
+                                                 = sigmoid(z1), where i = 1
+softmax(z2) = 𝑒^(𝑧2-z1) / (𝑒^(𝑧1-z1) + 𝑒^(𝑧2-z1)) = 𝑒^(z) / (1 + 𝑒^(z))
+                                                 = 1 / (1 + 𝑒^-z)
+                                                 = sigmoid(z2), where i = 2
+
+Relabelling the first category as z0 instead of z1, and the second category as z1 instead of z2,
+softmax(z0) = 𝑒^(𝑧0-z1) / (𝑒^(𝑧0-z1) + 𝑒^(𝑧1-z1)) = 𝑒^(-z) / (𝑒^(-z) + 1)
+                                                 = 1 / (𝑒^z + 1)
+                                                 = 1 - sigmoid(z), where i = 0
+softmax(z1) = 𝑒^(𝑧1-z0) / (𝑒^(𝑧0-z0) + 𝑒^(𝑧1-z0)) = 𝑒^(z) / (1 + 𝑒^(z))
+                                                 = 1 / (1 + 𝑒^-z)
+                                                 = sigmoid(z), where i = 1
+
+The sigmoid/logit function is essentially a special case of the softmax function applied to a binary 
+classification problem with the sigmoid/logit function, giving the probability of the positive category 
+(category 1) when there are just two (binary) categories, which directly models the probability of one 
+category over the other category.
+
+
+(Note: The 'zi' in the softmax function does not have a negative sign while the 'z' in the sigmoid/logit 
+       function has a negative sign!)
+
+
+///////////////////////////////////////////////////////////////////////////////////
+
+
+Trouble of representing the Multinomial Logistic Regression (MNLR) ML algorithm graphically compared to the 
+Binary Logistic Regression (BLR) ML algorithm:
+Fundamentally, the MNLR ML algorithm works exactly the same way as the BLR ML algorithm (see the 
+'1. What_is_Logistic_Regression_and_Binary_Logistic_Regression.txt' file in the 'Tutorial 5 - Logistic Regression and 
+Binary Logistic Regression (Classification Supervised Learning Machine Learning Algorithm)' folder). 
+
+The mathematical equation that represents the BLR ML algorithm, which deals with two/binary categorical dependent 
+variables, is 'sigmoid(z) = 1 / (1 + 𝑒^−z)', hence we can show the 'S' shaped line (the BLR ML algorithm itself) in a 
+2D graph. (Technically if the BLR ML algorithm takes in more than one independent variables/features, we also cannot
+show the BLR ML algorithm in a 2D graph as well...)
+
+However, the mathematical equation that represents the MVLR ML algorithm is 'softmax(𝑧𝑖) = 𝑒^𝑧𝑖 / (𝑒^𝑧1 + 𝑒^𝑧2 + ... + 𝑒^𝑧k)',
+hence the 'S' shaped line (the MVLR ML algorithm itself) is difficult to show as it will require a higher dimension graph 
+(e.g. 3D, 4D...), with the number of dimensions depending on the number of nominal categorical dependent variables 
+involved in the MVLR ML algorithm. (This is further complicated if the MNLR ML algorithm takes in more than one 
+independent variables/features, I still don't know how the MNLR ML algorithm will look like with multiple nominal 
+categorical dependent variables and more than one independent variables/features)
+
+Regardless, we can still show how the MNLR ML algorithm works using its mathematical equation, 
+'softmax(𝑧𝑖) = 𝑒^𝑧𝑖 / (𝑒^𝑧1 + 𝑒^𝑧2 + ... + 𝑒^𝑧k)'.
+
+
+///////////////////////////////////////////////////////////////////////////////////
+
+
+How does the Multinomial Logistic Regression (MNLR) ML algorithm work in a context:
+Lets say we have a dataset (a table of data) of 'fruit categories' and multiple independent variables/features
+predicting if a fruit could be of a specific 'fruit category', the 'weight', 'color', 'size' and 'sweetness' 
+(dataset is referenced from 'fruit_categories_with_multiple_independent_variables_and_multiple_nominal_
+categorical_dependent_variables.csv'). 
+
+Learning from the 'Tutorial 4 - Machine Learning Encoding Techniques, One-hot Encoding Machine Learning Encoding Technique 
+and Label Encoding Machine Learning Encoding Technique (Machine Learning Technique)' folder, where we learnt that you can 
+represent nominal categorical variables as values, by representing 'fruit categories' using values, i.e. 'apple' as the 
+value of 1, 'banana' as the value of 2, and 'orange' as the value of 3.
+
+The mathematical equation for the MNLR ML algorithm in this context, aka the Machine Learning (ML) model for this 
+context, is:
+        softmax(𝑧𝑖) = 𝑒^𝑧𝑖 / (𝑒^𝑧1 + 𝑒^𝑧2 + 𝑒^𝑧3)
+ 
+where,
+- for 𝑖 = 1, 2, 3, since there is 3 nominal categorical dependent variables (we let each value represent
+  each nominal categorical dependent variables, 'apple' as the value of 1, 'banana' as the value of 2, and 
+  'orange' as the value of 3)
+- '𝑧i' = m(zi,weight) * weight + m(zi, color) * color + m(zi, size) * size + m(zi, sweetness) * sweetness + bi, 
+  and corresponds to a particular nominal category i which is a function of the independent variables/features, 
+  the weights/gradients/coefficients, and bias/intercept specific to that nominal category
+
+  where,
+  - 'weight' ('x1'), 'color' ('x2'), 'size' ('x3') and 'sweetness' ('x4') are the independent 
+    variables/features
+  - 'm(zi, weight)', 'm(zi, color)', 'm(zi, size)' and 'm(zi, sweetness)' are the weights/gradients/coefficients 
+    of the independent variables/features 'weight' ('x1'), 'color' ('x2'), 'size' ('x3') and 'sweetness' ('x4') 
+    respectively
+
+    where,
+    - 'zi' indicates the particular nominal category i that the 'm(zi, weight)' weight/gradient/coefficient
+      belongs to
+    - 'weight', 'color', 'size', 'sweetness' indicates the corresponding weight/gradient/coefficient in the 
+      particular nominal category 'zi' function (or you can think of it as the label for the independent 
+      variable/feature to which the weight/gradient/coefficient is attached to)
+
+    - 'bi' is the bias/intercept (Note: For the MNLR ML algorithm, 'bi' does not represent the y-intercept! I 
+      will not explain why and what exactly it is here, but to simplify things, just know that it is basically 
+      just a 'constant term'), for the particular nominal category 'zi' function
+
+  (Note: The '...' in '𝑒^𝑧1 + 𝑒^𝑧2 + ... + 𝑒^𝑧k' represents that there can any number of nominal categories 
+  of the nominal categorical dependent variable in the MNLR ML algorithm)
+
+
+- 'softmax()', the softmax function, is 𝑒^𝑧𝑖 / (𝑒^𝑧1 + 𝑒^𝑧2 + 𝑒^𝑧3), for 𝑖 = 1, 2, 3, which is a function 
+  that maps any real number of zi to a value between 0 and 1 (it is able to do this because for any value of 
+  e^zi, the denominator will always be at least equal or larger than the nominator)
+- 'softmax(zi)' is the mapped value between 0 and 1 after any real number of zi is passed through the 'softmax()', 
+  the softmax function
+- '𝑒' is the Euler's number ~ 2.71828
+
+
+But the mathematical equation does not represent the full MNLR ML algorithm! There is one extra step:
+The rationale for using the softmax function to mapping any real number of zi to a value between 0 and 1 is so that
+the real-number-of-z-now-a-value-between-0-and-1, 'softmax(zi)', can be interpreted as a probability! And also by 
+using the softmax function to map any real number of zi for all 𝑖 = 1, 2, … , 𝐾, to a value between 0 and 1, the
+softmax function normalises (aka adjusting all the real-number-of-z-now-a-value-between-0-and-1, 'softmax(zi)',
+probability to the same scale, where the sum of all the real-number-of-z-now-a-value-between-0-and-1, 'softmax(zi)',
+probabilities is equal to 1)
+
+This process (of mapping any real number of zi to a value between 0 and 1 real-number-of-z-now-a-value-between-0-and-1, 
+'softmax(zi)', probability) repeats to find all the different real-number-of-z-now-a-value-between-0-and-1, 'softmax(zi)',
+probabilities, for 𝑖 = 1, 2, 3, and since 'fruit category' ('y') is the (multiple nominal categorical) dependent variable, 
+the particular nominal category 'zi' function that has the largest 'softmax(zi)', probability for a set of values of the 
+independent variables/features for the MNLR ML algorithm will be interpreted as the (predicted) 'fruit category' ('y') 
+(multiple nominal categorical) dependent variable value to be the category represented by that value of 𝑖.
+
+
+///////////////////////////////////////////////////////////////////////////////////
+
+
+So, how is the Multinomial Logistic Regression (MNLR) a Machine Learning (ML) algorithm in this context?
+The MNLR is a ML algorithm because its algorithm allows it to make predictions. 
+
+(We cannot plot the best fit line for visualisation, which represents the MNLR ML algorithm itself as explained in the 
+above section 'Trouble of representing the MNLR ML algorithm graphically compared to the BLR ML algorithm')
