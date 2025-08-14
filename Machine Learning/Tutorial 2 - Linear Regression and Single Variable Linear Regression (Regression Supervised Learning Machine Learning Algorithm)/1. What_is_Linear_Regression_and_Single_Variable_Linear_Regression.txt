@@ -1,0 +1,103 @@
+What is Linear Regression (LR)?
+LR is a type of Supervised learning Regression Machine Learning (ML) algorithm that computes the 
+linear relationship between a dependent variable and at least one independent variable/feature.
+
+Types of Linear Regression (LR):
+1. Single Variable Linear Regression (SVLR) (will be covered in this tutorial)
+2. Multiple Variable Linear Regression (MVLR) (will be covered in 'Tutorial 2.1 - Multiple Variable 
+                                               Linear Regression (Regression Supervised Learning Machine
+                                               Learning Algorithm)')
+
+
+///////////////////////////////////////////////////////////////////////////////////
+
+
+What is Single Variable Linear Regression (SVLR)?
+SVLR is a type of Supervised learning Regression Machine Learning (ML) algorithm that computes the 
+linear relationship between a dependent variable and one independent variable/feature.
+
+Note: In the topic of ML, independent variables are also commonly called 'features'. 
+
+
+///////////////////////////////////////////////////////////////////////////////////
+
+
+How does the Single Variable Linear Regression (SVLR) Machine Learning (ML) algorithm work?
+The SVLR ML algorithm can be essentially represented by the mathematical equation:
+        y = mx + b
+
+where,
+- 'y' is the dependent variable
+- 'x' is the independent variable/feature
+- 'm' is the gradient/coefficient of the independent variable/feature 'x'
+- 'b' is the y-intercept, 'constant term'
+
+
+///////////////////////////////////////////////////////////////////////////////////
+
+
+How does the Single Variable Linear Regression (SVLR) ML algorithm work in a context:
+Lets say we have a dataset (a table of data) of 'housing prices' and just one variable affecting the 'housing 
+prices', the 'house area' (dataset is referenced from 'house_prices_with_one_independent_variable.csv'), and 
+we plotted the data from this dataset in a scatter graph (as shown below), and drew a best fit line through 
+the data (points) in the scatter graph with minimal error (Mean Square Error) between the best fit line and 
+all the data (points) in the scatter graph. 
+
+   price ($1000)
+        ^
+      12|          /
+        |         /
+      10|        /
+        |      */
+        |      /
+        |     /  *
+      5 |  * /
+        |   /
+        |  /*
+        | /
+      0 |-------------> area (m^2)
+        0        4000
+
+The mathematical equation for the SVLR ML algorithm in this context, aka the Machine Learning (ML) model for this 
+context, is:
+        price = m * area + b
+
+where,
+- 'price' ('y') is the dependent variable
+- 'area' ('x') is the independent variable/feature
+- 'm' is the gradient/coefficient of 'area' ('x')
+- 'b' is the y-intercept, 'constant term'
+
+The mathematical equation, 'y = mx + b', basically represents the SVLR ML algorithm, while the best fit line and 
+the mathematical equation, 'price = m * area + b', basically represents this context's SVLR ML algorithm.
+
+
+///////////////////////////////////////////////////////////////////////////////////
+
+
+So, how is the Single Variable Linear Regression (SVLR) a Machine Learning (ML) algorithm in this context?
+The SVLR is a ML algorithm because its algorithm allows it to make predictions. 
+
+In this context, looking at the best fit line drawn in the scatter graph using the mathematical equation using the 
+data from the dataset of the 'housing prices' and its only independent variable/feature, 'house area', we can 
+predict, for example, the estimate price of a potentially bigger house of larger 'house area', lets say 4000m^2, 
+that to be $12000, even though this 'potentially bigger house' might not exist yet.
+
+Or you can think of it as substituting the value of the 'house area' independent variable/feature into the 
+mathematical equation for the SVLR ML algorithm in this context, aka the SVLR ML model for this context, 
+'price = m * area + b', to find the predicted 'housing price' dependent variable.
+
+   price ($1000)
+        ^
+      12|----------/
+        |         /|
+      10|        / |
+        |      */  |
+        |      /   |
+        |     /  * |
+      5 |  * /     |
+        |   /      |
+        |  /*      |
+        | /        | 
+      0 |-------------> area (m^2)
+        0        4000
