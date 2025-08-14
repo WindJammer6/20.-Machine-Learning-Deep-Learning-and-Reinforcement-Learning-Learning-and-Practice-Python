@@ -1,0 +1,275 @@
+What is Machine Learning (ML)?
+Machine learning is a subfield of Artificial Intelligence (AI) that uses Machine Learning (ML) 
+algorithms trained on datasets to create a Machine Learning (ML) model (represented in a machine)
+that are capable of predicting outcomes and classifying information without human intervention. 
+It can also be thought as an application of Artificial Intelligence (AI) that allows a machine 
+to automatically learn and improve from experience (by presenting it with more relevant data).
+
+Machine learning algorithms are used in many computer programs to perform lots of tasks in our daily lives. 
+For example, the autocorrect feature on your smartphone makes use of a combination of machine learning 
+algorithms and a sub-field of machine learning called Natural Language Processing (NLP), which predicts 
+what words you intend to type next.
+
+
+/////////////////////////////////////////////////////////////////////////////////////
+
+
+What is a Machine Learning (ML) model?
+Machine Learning (ML) models refer to the contextualised version of Machine Learning (ML) 
+algorithm(s). They are what Machine Learning (ML) algorithm(s) become after being sufficiently 
+trained, such that it has accumulated a comprehensive list of instructions that allow them to 
+function correctly, using a specific dataset.
+
+Examples of ML models are infinite, due to the infinitely possible ways to contextualise ML
+algorithms in reality.
+
+
+What is a Machine Learning (ML) algorithm?
+Machine Learning (ML) algorithms refer to the list set of instructions (definition of an 
+algorithm) that allows a machine to learn from data and improve from experience, and be capable 
+of predicting outcomes and classifying information without human intervention.
+
+Examples of ML algorithms are finite, due to the fact that there is really only a limited set 
+of ways/ML algorithms that we know of to train a machine to be capable of predicting outcomes 
+and classifying information without human intervention.
+
+
+(Important note: ML algorithms/models allows a machine to learn from data, but they do not 
+                 train the machine to be able to learn from data! These ML algorithms are
+                 trained (to become ML models) via another set of algorithms called Optimization
+                 Algorithms. 
+                
+                 You can think of it as ML algorithms/models as the 'template'/'structure' that 
+                 a machine uses for learning from data, and Optimization Algorithms are the 'driving 
+                 force' behind the training of these ML algorithms. 
+                
+                 (see more about Optimization Algorithms in the '1. What_are_Optimization_Algorithms_and
+                 _Gradient_Descent_Optimization_Algorithm_and_the_Cost_Function.txt' file in the 
+                 'Tutorial 4 - Optimization Algorithms, Gradient Descent Optimzation Algorithm and the 
+                 Cost Function' folder). 
+)
+
+
+////////////////////////////////////////////////////////////////////////////
+
+
+What are the 4 distinct ways/approaches for a Machine Learning (ML) algorithm to be trained to become a Machine 
+Learning (ML) model?
+The 4 distinct ways/approaches a ML algorithm can be trained are:
+1. Supervised learning - consists of ML algorithms that are trained using a 'labelled 
+                         dataset', where the data contains both the input and desired output 
+                         parameters. The ML algorithms in this category can be further split 
+                         into 2 sub-categories, Regression Supervised Learning and 
+                         Classification Supervised Learning
+   a. Regression Supervised Learning - consists of Supervised learning ML algorithms that 
+                                       are trained using a 'labeled dataset', where the 
+                                       data contains both the input and desired output 
+                                       parameters, and that the desired outputs is a 
+                                       continuous range of values
+   b. Classification Supervised Learning - consists of Supervised learning ML algorithms that 
+                                           are trained using a 'labeled dataset', where 
+                                           the data contains both the input and desired output 
+                                           parameters, and that the desired outputs is a 
+                                           limited set of values
+
+2. Unsupervised learning - consists of ML algorithms that are trained using an 'unlabelled 
+                           dataset', where the data contains only the input parameters. They
+                           primarily aim to discover hidden patterns/similarities/clusters 
+                           within the 'unlabelled dataset'. The ML algorithms in this category 
+                           can be further split into 2 sub-categories, Clustering Unsupervised 
+                           Learning and Association Unsupervised Learning
+   a. Clustering Unsupervised Learning - consists of Unsupervised learning ML algorithms that 
+                                         are trained using an 'unlabeled dataset', where the 
+                                         data contains only the input parameters, and that they 
+                                         train the machine to group data based on their 
+                                         similarity into clusters
+   b. Association Unsupervised Learning - consists of Unsupervised learning ML algorithms that 
+                                          are trained using an 'unlabeled dataset', where 
+                                          the data contains only the input parameters, and that 
+                                          they train the machine to discover relationships 
+                                          between data
+
+3. Semi-supervised learning - consists of ML algorithms that are trained using both 'labelled 
+                              dataset' and 'unlabelled dataset', kind of like working in between 
+                              Supervised and Unsupervised learning. 
+
+4. Reinforcement learning - consists of ML algorithms that are trained not using datasets, 
+                            but rather, they involve the machine (autonomous agent) interacting in an 
+                            environment, and training the machine by allowing it to receive feedback in the 
+                            form of rewards or penalties in that environment
+
+
+/////////////////////////////////////////////////////////////////////////////////
+
+
+What are some of the Machine Learning (ML) algorithms that fall in each distinct ways/approaches to be trained to 
+become a Machine Learning (ML) model?
+1. Supervised learning
+   a. Regression Supervised learning
+      - Linear Regression (taught in these tutorials)
+        -> Single Variable Linear Regression (taught in these tutorials)
+        -> Multiple Variable Linear Regression (taught in these tutorials)
+
+   b. Classification Supervised learning
+      - Logistic Regression (taught in these tutorials) (It is used for classification. Don’t get thrown off by 
+        the word 'regression' in the name. I know, it’s confusing. I didn’t make the rules.)
+        -> Binary Logistic Regression (taught in these tutorials)
+        -> Multinomial Logistic Regression (taught in these tutorials)
+        -> Multioridnal Logistic Regression
+      - Support Vector Machine (SVM) (taught in these tutorials)
+      - K-Nearest Neighbors (KNN) (taught in these tutorials)
+      - Naive Bayes (taught in these tutorials)
+        -> Gaussian Naive Bayes (taught in these tutorials)
+        -> Multinomial Naive Bayes (taught in these tutorials)
+        -> Bernoulli Naive Bayes
+
+    c. For both Regression Supervised learning and Classification Supervised learning
+      - Decision Tree (taught in these tutorials)
+      - Random Forest (taught in these tutorials)
+      - Gradient Boosting algorithms
+        -> XGBoost
+        -> LightGBM
+      - (artificial) Neural Networks (there are various sub-types of (artificial) Neural Networks ML 
+        algorithm)
+
+
+2. Unsupervised learning
+   a. Clustering Unsupervised learning
+      - K-Means Clustering algorithm (taught in these tutorials)
+      - Hierarchical Clustering algorithm
+      - Mean-shift algorithm
+      - Density-Based Spatial Clustering of Applications with Noise (DBSCAN) algorithm
+      - Gaussian Mixture Models (GMMs)
+
+   b. Association Unsupervised learning
+      - Apriori algorithm
+      - Eclat
+      - FP-growth algorithm
+
+   c. For both Clustering Unsupervised learning and Association Unsupervised learning
+      - (artificial) Neural Networks (there are various sub-types of (artificial) Neural Networks ML 
+        algorithm)
+
+
+3. Semi-supervised learning
+   - Self-training
+   - Co-training
+   - Generative Adversarial Networks (GANs)
+   - (artificial) Neural Networks (there are various sub-types of (artificial) Neural Networks ML 
+     algorithm)
+
+
+4. Reinforcement learning
+   - Q-learning
+   - State-Action-Reward-State-Action (SARSA) 
+   - (artificial) Neural Networks (there are various sub-types of (artificial) Neural Networks ML 
+     algorithm)
+
+
+Note: - (artificial) Neural Networks is a powerful ML algorithm that can be used as any of the 4 
+        ways/approaches of training a machine to be able to be capable of predicting outcomes and 
+        classifying information without human intervention. They are so powerful, such that there
+        is an entire field of study about (artificial) Neural Networks, particularly on 'deep' 
+        (artificial) Neural Networks, known as Deep Learning (DL).
+      - As you can see, these Machine Learning (ML) tutorials mainly focuses on the more common 
+        Supervised learning and Unsupervised learning ML algorithms. This is because these ML 
+        algorithms are more foundational, and less complex, allowing for a smoother transaction 
+        to understanding Machine Learning (ML) concepts in the topic of Machine Learning (ML), 
+        for someone starting out on the topic of Machine Learning (ML) like me.
+
+
+Source(s): - https://www.geeksforgeeks.org/types-of-machine-learning/ (GeeksforGeeks)
+           - https://www.springboard.com/blog/data-science/14-essential-machine-learning-algorithms/ 
+             (SpringBoard)
+           - https://www.datacamp.com/cheat-sheet/machine-learning-cheat-sheet (DataCamp) (a cheat
+             sheet of Machine Learning (ML) algorithms)
+
+
+//////////////////////////////////////////////////////////////////////////////////////////
+
+
+Linear vs Non-Linear Machine Learning (ML) algorithms, and why can some Machine Learning (ML) algorithms be 
+represented by a single mathematical equation, but some cannot? 
+
+Furthermore, ML algorithms can be further split into linear or non-linear by nature. Specific explanation on
+why each ML algorithm is linear, or non-linear is too tedious, and complex for the more advanced ML 
+algorithms (though the explanation for the linear or non-linear nature for some of these ML algorithms is in 
+these tutorials).
+
+- Linear ML algorithms are where the relationship or decision boundary between the independent variables/features 
+  (inputs) and dependent variable (output) is proportional. They can be represented by a single mathematical 
+  equation.
+- Non-linear ML algorithms are where the relationship (for Regression problems) or decision boundary (for 
+  Classification problems) between the independent variables/features (inputs) and dependent variable (output) is 
+  more complex and flexible. They cannot be represented by a single mathematical equation, rather, they can be 
+  thought to be associated to multiple, more complex mathematical equations (but no single mathematical equation 
+  can be said to represent these ML algorithms).
+
+(Note: 
+-> The clear distinction between linearity or non-linearity by nature is more associated for Supervised Learning 
+   ML algorithms, while this distinction between linearity or non-linearity by nature blurs for Unsupervised 
+   Learning ML algorithms.
+-> Non-linear ML algorithms can exhibit linear behaviour in specific context/patterns/datasets, but linear ML
+   algorithms is more of 'fixed' in its linear behaviour, and cannot exhibit non-linear behaviour.
+)
+
+
+
+In the context of the Supervised Learning ML algorithms,
+Here is a list of Supervised learning ML algorithms again, but with a label if they are linear or non-linear 
+by nature:
+1. Supervised learning
+   a. Regression Supervised learning
+      - Linear Regression
+        -> Single Variable Linear Regression (Linear)
+        -> Multiple Variable Linear Regression (Linear)
+
+   b. Classification Supervised learning
+      - Logistic Regression (Linear)
+      - Support Vector Machine (SVM) (Non-linear)
+      - K-Nearest Neighbors (KNN) (Non-linear)
+      - Naive Bayes
+        -> Gaussian Naive Bayes (Non-linear)
+        -> Multinomial Naive Bayes (Non-linear)
+        -> Bernoulli Naive Bayes (Non-linear)
+
+    c. For both Regression Supervised learning and Classification Supervised learning
+      - Decision Tree (Non-linear)
+      - Random Forest (Non-linear)
+      - Gradient Boosting algorithms
+        -> XGBoost (Non-linear)
+        -> LightGBM (Non-linear)
+      - (artificial) Neural Networks (Non-linear)
+
+As we can see, there are only 2 Supervised Learning ML algorithms, 
+- Linear Regression ML algorithm (Regression) (Single Variable Linear Regression (SVLR) and Multiple Variable 
+  Linear Regression (MVLR))
+- Logistic Regression ML algorithm (Classification)
+
+that are linear in nature, while the rest are non-linear by nature.
+
+
+
+In the context of Unsupervised Learning ML algorithms,
+Here is a list of Unsupervised learning ML algorithms again, but with a label if they are linear or non-linear 
+by nature:
+2. Unsupervised learning
+   a. Clustering Unsupervised learning
+      - K-Means Clustering algorithm (Non-linear)
+      - Hierarchical Clustering algorithm (Non-linear)
+      - Mean-shift algorithm (Non-linear)
+      - Density-Based Spatial Clustering of Applications with Noise (DBSCAN) algorithm (Non-linear)
+      - Gaussian Mixture Models (GMMs) (Non-linear)
+
+   b. Association Unsupervised learning
+      - Apriori algorithm (Non-linear)
+      - Eclat (Non-linear)
+      - FP-growth algorithm (Non-linear)
+
+   c. For both Clustering Unsupervised learning and Association Unsupervised learning
+      - (artificial) Neural Networks (Non-linear)
+
+As we can see, all Unsupervised learning ML algorithms are non-linear in nature. 
+
+
+

@@ -1,0 +1,263 @@
+What is Scikit-learn?
+Scikit-learn is one of the most of well known Machine Learning (ML) Python libraries, allowing the programmer to 
+have easy access to all of the most common Supervised learning and Unsupervised learning ML algorithms. However, 
+it does not have extensive support for Semi-supervised learning and Reinforcement learning ML algorithms.
+
+But its fine, since in these introductory tutorials to Machine Learning (ML) we will only be focusing mainly
+on the Supervised learning and Unsupervised learning ML algorithms. 
+
+Scikit-learn Machine Learning (ML) library documentation: https://scikit-learn.org/stable/user_guide.html
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+How to import Scikit-learn Machine Learning (ML) library into your code?
+
+    "
+    import sklearn as sk
+    "
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+Scikit-learn Machine Learning (ML) library's respective classes that represents each of the common Supervised 
+learning and Unsupervised learning ML algorithms (basically for all of the Supervised learning and Unsupervised 
+learning ML algorithms taught in these tutorials):
+
+1. Supervised learning
+   a. Regression Supervised learning
+      - Linear Regression 
+        -> Single Variable Linear Regression 
+                "
+                from sklearn.linear_model import LinearRegression
+
+                # Creating a 'Single Variable Linear Regression model' class object/instance
+                single_variable_linear_regression_model = LinearRegression()
+
+                # Training the model
+                single_variable_linear_regression_model.fit(X_single_variable_train, y_single_variable_train)
+
+                # Making predictions
+                predictions_single_variable_linear_regression_model = single_variable_linear_regression_model.predict(X_single_variable_test)
+                "
+
+
+        -> Multiple Variable Linear Regression 
+                "
+                from sklearn.linear_model import LinearRegression
+
+                # Creating a 'Multiple Variable Linear Regression model' class object/instance
+                multiple_variable_linear_regression_model = LinearRegression()
+
+                # Training the model
+                multiple_variable_linear_regression_model.fit(list_of_X_multiple_variable_train, y_multiple_variable_train)
+
+                # Making predictions
+                predictions_multiple_variable_linear_regression_model = multiple_variable_linear_regression_model.predict(list_of_X_multiple_variable_test)
+                "
+
+
+   b. Classification Supervised learning
+      - Logistic Regression 
+            "
+            from sklearn.linear_model import LogisticRegression
+
+            # Creating a 'Logistic Regression model' class object/instance
+            logistic_regression_model = LogisticRegression()
+
+            # Training the model
+            logistic_regression_model.fit(X_train, y_train)
+
+            # Making predictions
+            predictions_logistic_regression_model = logistic_regression_model.predict(X_test)
+            "
+
+
+      - Support Vector Machine (SVM) 
+            "
+            from sklearn.svm import SVC
+
+            # Creating an 'Support Vector Machine (SVM) model' class object/instance
+            svm_model = SVC()
+
+            # Training the model
+            svm_model.fit(X_train, y_train)
+
+            # Making predictions
+            predictions_svm_model = svm_model.predict(X_test)
+            "
+
+
+      - K-Nearest Neighbors (KNN) 
+        "
+        from sklearn.neighbors import KNeighborsClassifier
+
+        # Creating a 'K-Nearest Neighbors (KNN) model' class object/instance
+        knn_model = KNeighborsClassifier()
+
+        # Training the model
+        knn_model.fit(X_train, y_train)
+
+        # Making predictions
+        predictions_knn_model = knn_model.predict(X_test)
+        "
+
+
+      - Naive Bayes 
+        -> Gaussian Naive Bayes 
+            "
+            from sklearn.naive_bayes import GaussianNB
+
+            # Creating a 'Gaussian Naive Bayes model' class object/instance
+            gaussian_naive_bayes_model = naive_bayes.GaussianNB()
+
+            # Training the model
+            gaussian_naive_bayes_model.fit(X_train, y_train)
+
+            # Making predictions
+            predictions_gaussian_naive_bayes_model = gaussian_naive_bayes_model.predict(X_test)
+            "
+
+
+        -> Multinomial Naive Bayes 
+            "
+            from sklearn.naive_bayes import MultinomialNB
+
+            # Creating a 'Multinomial Naive Bayes model' class object/instance
+            multinomial_naive_bayes_model = MultinomialNB()
+
+            # Training the model
+            multinomial_naive_bayes_model.fit(X_train, y_train)
+
+            # Making predictions
+            predictions_multinomial_naive_bayes_model = multinomial_naive_bayes_model.predict(X_test)
+            "
+
+
+        -> Bernoulli Naive Bayes
+            "
+            from sklearn.naive_bayes import BernoulliNB
+
+            # Creating a 'Bernoulli Naive Bayes model' class object/instance
+            bernoulli_naive_bayes_model = BernoulliNB()
+
+            # Training the model
+            bernoulli_naive_bayes_model.fit(X_train, y_train)
+
+            # Making predictions
+            predictions_bernoulli_naive_bayes_model = bernoulli_naive_bayes_model.predict(X_test)
+            "
+
+
+    c. For both Regression Supervised learning and Classification Supervised learning
+      - Decision Tree 
+            "
+            # To use the Decision Tree for Regression Supervised learning:
+            
+            from sklearn.tree import DecisionTreeRegressor
+
+            # Creating a 'Decision Tree model for Regression Supervised learning' class object/instance
+            decision_tree_regression_model = sklearn.tree.DecisionTreeRegressor()
+
+            # Training the model
+            decision_tree_regression_model.fit(X_train, y_train)
+
+            # Making predictions            
+            predictions_decision_tree_regression_model = decision_tree_regression_model.predict(X_test)
+
+
+
+            # To use the Decision Tree for Classification Supervised learning:
+
+            from sklearn.tree import DecisionTreeClassifier
+
+            # Creating a 'Decision Tree model for Classification Supervised learning' class object/instance
+            decision_tree_classification_model = DecisionTreeClassifier()
+
+            # Training the model
+            decision_tree_classification_model.fit(X_train, y_train)
+
+            # Making predictions      
+            predictions_decision_tree_classification_model = decision_tree_classification_model.predict(X_test)
+            "
+            
+
+      - Random Forest 
+            "
+            # To use the Random Forest for Regression Supervised learning:
+
+            from sklearn.ensemble import RandomForestRegressor
+
+            # Creating a 'Random Forest model for Regression Supervised learning' class object/instance
+            random_forest_regression_model = RandomForestRegressor()
+
+            # Training the model
+            random_forest_regression_model.fit(X_train, y_train)
+
+            # Making predictions      
+            predictions_random_forest_regression_model = random_forest_regression_model.predict(X_test)
+
+
+
+            # To use the Random Forest for Classification Supervised learning:
+            
+            from sklearn.ensemble import RandomForestClassifier
+
+            # Creating a 'Random Forest model for Classification Supervised learning' class object/instance
+            random_forest_classification_model = RandomForestClassifier()
+
+            # Training the model
+            random_forest_classification_model.fit(X_train, y_train)
+
+            # Making predictions      
+            predictions_random_forest_classification_model = random_forest_classification_model.predict(X_test)
+            "
+
+
+2. Unsupervised learning
+   a. Clustering Unsupervised learning
+      - K-Means Clustering algorithm 
+            "
+            from sklearn.cluster import KMeans
+
+            # Creating a 'K-Means Clustering model' class object/instance
+            kmeans_model = KMeans(n_clusters=3)
+
+            # Training the model
+            kmeans_model.fit(X_train_cluster)
+
+            # Assigning clusters to data points
+            cluster_assignments_kmeans_model = kmeans_model.predict(X_test_cluster)
+            "
+
+
+   b. Association Unsupervised learning
+      NIL
+
+
+   c. For both Clustering Unsupervised learning and Association Unsupervised learning
+      NIL
+
+
+Note: - The code to use these ML algorithms are a little more complicated than this, and these codes are
+        just a concise version of them. Refer to the respective tutorial to see the full code to use these ML 
+        algorithms
+      - For some reason, it sometimes does not work if you, using the Single Variable Linear Regression ML 
+        algorithm as an example, import scikit-learn library via: 
+            'import sklearn as sk'
+        
+        then try to use the Single Variable Linear Regression ML algorithm class in the main code like so:
+            'sk.linear_model.LinearRegression'
+
+        
+        The more-likely-to-work way, and the more widely used way to do this, as shown above is:
+            'from sklearn.linear_model import LinearRegression'
+
+        then try to use the Single Variable Linear Regression ML algorithm class in the main code like so:
+            'LinearRegression()' 
+
+        where you import the scikit-learn library's 'sklearn.linear_model' submodule directly only, rather 
+        than the full scikit-learn library (which is what happens when you use the code 'import sklearn as 
+        sk')

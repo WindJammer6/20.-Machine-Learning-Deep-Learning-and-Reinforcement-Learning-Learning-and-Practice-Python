@@ -1,0 +1,76 @@
+What is Artificial Intelligence (AI)?
+Artificial Intelligence (AI) refers to the ability of a machine to imitate human intelligence.
+
+A common misconception that people have about AI is that these AI machines can understand, 
+think, or reason. However, AI is only trained to be really good at a particular thing we optimize 
+it for, so it has a very specific type of “intelligence", while human intelligence is more general.
+
+    Artificial Intelligence (AI) = Data + Algorithms
+
+
+
+What is Machine Learning (ML)?
+Machine Learning is a subfield of Artificial Intelligence (AI) that uses Machine Learning (ML) 
+algorithms trained on datasets to create a Machine Learning (ML) model (represented in a machine)
+that are capable of predicting outcomes and classifying information without human intervention. 
+It can also be thought as an application of Artificial Intelligence (AI) that allows a machine 
+to automatically learn and improve from experience (by presenting it with more relevant data).
+
+Machine Learning algorithms are used to train computers to perform lots of tasks in our daily lives. 
+For example, the autocorrect feature on your smartphone is a kind of machine Learning called Natural 
+Language Processing (NLP), which predicts what words you intend to type next.
+
+
+
+What is Deep Learning (DL)? 
+Deep Learning (DL) is a subfield of Machine Learning (ML), where the focused Machine Learning (ML) 
+algorithm trained on datasets to create a Deep Learning (DL) model (represented in a machine), is 
+(artificial) Neural Networks, specifically, (artificial) Neural Networks that are 'deep', containing
+multiple hidden layers. 
+
+This is because (artificial) Neural Networks is a ML algorithm, hence not all models created by 
+(artificial) Neural Networks are DL models, only models created by 'deep' (artificial) neural 
+networks are considered DL models, while models created by 'shallow' (artificial) Neural Networks 
+(containing only a few hidden layers), remain as ML models. You can think of Deep Learning (DL)
+being a field of study on (artificial) Neural Networks, particularly on 'deep' (artificial) Neural 
+Networks. 
+
+An (artificial) Neural Network is an interconnected group of nodes, an attempt to mimic to the 
+vast network of neurons in a brain. There are various subtypes of the (artificial) Neural Network
+ML algorithm, but we will explore that in a Deep Learning tutorial in the future. 
+
+
+////////////////////////////////////////////////////////////////////////////////////
+
+
+Machine Learning (ML) models  vs  Machine Learning (ML) algorithms
+
+Definition of Machine Learning (ML) models and Machine Learning (ML) algorithms
+- ML models refer to the contextualised version of ML algorithm(s). They are what ML algorithm(s) 
+  become after being sufficiently trained, such that it has accumulated a comprehensive list of 
+  instructions that allow them to function correctly, using a specific dataset.
+- ML algorithms refer to the list set of instructions (definition of an algorithm) to train a
+  machine to be able to be capable of predicting outcomes and classifying information without 
+  human intervention.
+
+Diversity of Machine Learning (ML) models and Machine Learning (ML) algorithms
+- Examples of ML models are infinite, due to the infinitely possible ways to contextualise ML
+  algorithms in reality.
+- Examples of ML algorithms are finite, due to the fact that there is really only a limited set 
+  of ways/ML algorithms that we know of to train a machine to be capable of predicting outcomes 
+  and classifying information without human intervention (e.g. Linear Regression, Decision trees,
+  (artificial) Neural Networks etc.).
+
+
+Source(s): - https://www.coursera.org/articles/machine-learning-models (coursera)
+
+
+////////////////////////////////////////////////////////////////
+
+
+Comparing Artificial Intelligence (AI), Machine Learning (ML) and Deep Learning:
+An easier way to compare Artificial Intelligence (AI), Machine Learning (ML) and Deep Learning is 
+through knowing which is the subset of which (the arrow indicates 'is a superset of'):
+
+    Aritificial Intelligence (AI) -> Machine Learning (ML) -> Deep Learning (-> Generative AI)
+
