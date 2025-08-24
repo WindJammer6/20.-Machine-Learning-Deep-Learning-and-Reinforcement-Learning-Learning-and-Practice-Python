@@ -1,5 +1,5 @@
 # 20.-Machine-Learning-Deep-Learning-and-Reinforcement-Learning-Learning-and-Practice-Python
-My learning journey of Machine Learning (ML), Deep Learning (DL) and Reinforcement Learning (RL), the fundamental technical concepts behind the emergance use of AI around the world.
+My learning journey of Machine Learning (ML), Deep Learning (DL) and Reinforcement Learning (RL), the fundamental technical concepts behind the emergant use of AI around the world.
 
 Main sources:
 - ML: https://www.youtube.com/playlist?list=PLeo1K3hjS3uvCeTYTeyfe0-rN5r8zn9rw (codebasics) (YouTube playlist by codebasics, titled "Machine Learning Tutorial Python | Machine Learning for Beginners")
